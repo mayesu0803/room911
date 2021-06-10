@@ -15,9 +15,10 @@ class Employeds extends Migration
     {
         Schema::create('employeds', function (Blueprint $table) {
             $table->id();
-            $table->string('FrstName');
+            $table->string('FirstName');
             $table->string('MiddleName');
             $table->string('LastName');
+            $table->bigInteger('id_deparment');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class Employeds extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('employeds');
     }
 }

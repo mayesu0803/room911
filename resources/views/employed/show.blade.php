@@ -21,8 +21,8 @@
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Frstname:</strong>
-                            {{ $employed->FrstName }}
+                            <strong>Firstname:</strong>
+                            {{ $employed->FirstName }}
                         </div>
                         <div class="form-group">
                             <strong>Middlename:</strong>
@@ -31,6 +31,10 @@
                         <div class="form-group">
                             <strong>Lastname:</strong>
                             {{ $employed->LastName }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Id Deparment:</strong>
+                            {{ $employed->id_deparment }}
                         </div>
 
                     </div>

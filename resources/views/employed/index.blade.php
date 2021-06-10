@@ -36,9 +36,10 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Frstname</th>
+										<th>Firstname</th>
 										<th>Middlename</th>
 										<th>Lastname</th>
+										<th>Id Deparment</th>
 
                                         <th></th>
                                     </tr>
@@ -48,9 +49,10 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $employed->FrstName }}</td>
+											<td>{{ $employed->FirstName }}</td>
 											<td>{{ $employed->MiddleName }}</td>
 											<td>{{ $employed->LastName }}</td>
+											<td>{{ $employed->id_deparment }}</td>
 
                                             <td>
                                                 <form action="{{ route('employeds.destroy',$employed->id) }}" method="POST">

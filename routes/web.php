@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,15 @@ Route::resource('employeds', App\Http\Controllers\EmployedController::class)->mi
 Route::resource('departments', App\Http\Controllers\DepartmentController::class)->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/*
+Route::get('file-import-export', [UserController::class, 'fileImportExport']);
+Route::post('file-import', [UserController::class, 'fileImport'])->name('file-import');
+Route::get('file-export', [UserController::class, 'fileExport'])->name('file-export');
+*/
+
+Route::get('file-import-export', [DepartmentController::class, 'fileImportExport']);
+Route::post('file-import', [DepartmentController::class, 'fileImport'])->name('file-import');
+Route::get('file-export', [DepartmentController::class, 'fileExport'])->name('file-export');
+Route::get('/', function () {
+    return view('welcome');
+});

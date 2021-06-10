@@ -1,0 +1,6 @@
+Name
+Produccion
+Seguridad
+Bodega
+Gerencia
+Inspector

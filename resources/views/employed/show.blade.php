@@ -21,20 +21,28 @@
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Firstname:</strong>
-                            {{ $employed->FirstName }}
+                            <strong>Id Employed:</strong>
+                            {{ $employed->id_employed }}
                         </div>
                         <div class="form-group">
-                            <strong>Middlename:</strong>
-                            {{ $employed->MiddleName }}
+                            <strong>First Name:</strong>
+                            {{ $employed->first_name }}
                         </div>
                         <div class="form-group">
-                            <strong>Lastname:</strong>
-                            {{ $employed->LastName }}
+                            <strong>Middle Name:</strong>
+                            {{ $employed->middle_name }}
                         </div>
                         <div class="form-group">
-                            <strong>Id Deparment:</strong>
-                            {{ $employed->id_deparment }}
+                            <strong>Last Name:</strong>
+                            {{ $employed->last_name }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Room Access:</strong>
+                            {{ $employed->room_access }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Id Department:</strong>
+                            {{ $employed->id_department }}
                         </div>
 
                     </div>

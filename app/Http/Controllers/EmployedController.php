@@ -43,6 +43,9 @@ class EmployedController extends Controller
      */
     public function store(Request $request)
     {
+        print_r($request)
+        //$request->employed['room_access']? true : false;
+
         request()->validate(Employed::$rules);
 
         $employed = Employed::create($request->all());

@@ -33,6 +33,4 @@ Route::get('file-export', [UserController::class, 'fileExport'])->name('file-exp
 Route::get('file-import-export', [DepartmentController::class, 'fileImportExport']);
 Route::post('file-import', [DepartmentController::class, 'fileImport'])->name('file-import');
 Route::get('file-export', [DepartmentController::class, 'fileExport'])->name('file-export');
-Route::get('/', function () {
-    return view('welcome');
-});
+

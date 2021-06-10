@@ -26,7 +26,7 @@ class Employed extends Model
 		'LastName' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 5;
 
     /**
      * Attributes that should be mass-assignable.

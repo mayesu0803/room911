@@ -37,6 +37,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('employeds.index') }}">{{ __('Employed') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('departments.index') }}">{{ __('Departments') }}</a>
+                        </li>
 
                     </ul>
                     @endif

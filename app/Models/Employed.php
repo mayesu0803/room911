@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
  * Class Employed
  *
  * @property $id
- * @property $FrstName
+ * @property $FirstName
  * @property $MiddleName
  * @property $LastName
+ * @property $id_deparment
  * @property $created_at
  * @property $updated_at
  *
@@ -21,9 +22,10 @@ class Employed extends Model
 {
     
     static $rules = [
-		'FrstName' => 'required',
+		'FirstName' => 'required',
 		'MiddleName' => 'required',
 		'LastName' => 'required',
+		'id_deparment' => 'required',
     ];
 
     protected $perPage = 5;
@@ -33,7 +35,7 @@ class Employed extends Model
      *
      * @var array
      */
-    protected $fillable = ['FrstName','MiddleName','LastName'];
+    protected $fillable = ['FirstName','MiddleName','LastName','id_deparment'];
 
 
 

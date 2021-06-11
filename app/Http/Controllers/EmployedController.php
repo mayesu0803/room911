@@ -8,6 +8,7 @@ use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;
 use Illuminate\Support\Carbon;
+use PDF;
 
 /**
  * Class EmployedController
@@ -20,20 +21,20 @@ class EmployedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function fileImport(Request $request) 
-    {
-        Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
-        return redirect()->route('employeds.index')
-            ->with('success', 'Employeds created successfully.');
-    }
-
-    public function index()
+    
+    public function index(Request $request)
     {
         //$employeds= Employed::where('date_deleted',' is ', 'null')->paginate();
-        $employeds = Employed::paginate();
+        $employeds = Employed::paginate(5);
 
-        return view('employed.index', compact('employeds'))
-            ->with('i', (request()->input('page', 1) - 1) * $employeds->perPage());
+        if($request->has('download'))
+        {
+            $pdf = PDF::loadView('employed.index',compact('employeds'));
+            return $pdf->download('pdfview.pdf');
+        }
+        //$datos['employed']=Empleado::paginate(5);
+        //return view ('empleado.index', $datos);
+        return view('employed.index', compact('employeds'));
     }
 
     /**
@@ -131,5 +132,12 @@ class EmployedController extends Controller
         
         return redirect()->route('employeds.index')
             ->with('success', 'Employed deleted successfully');
+    }
+
+    public function fileImport(Request $request) 
+    {
+        Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
+        return redirect()->route('employeds.index')
+            ->with('success', 'Employeds created successfully.');
     }
 }

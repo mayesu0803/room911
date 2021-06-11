@@ -15,12 +15,16 @@
                             <span id="card_title">
                                 {{ __('Employed') }}
                             </span>
+                            <div class="float-right">
+                                <a class="btn btn-primary" href="{{route('employeds.index',['download'=>'pdf'])}}">Download PDF</a>
+                            </div>
 
                              <div class="float-right">
                                 <a href="{{ route('employeds.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
+
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -30,11 +34,11 @@
                     @endif
 
                     <div class="card-body">
+
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
                                         
 										<th>Id Employed</th>
 										<th>First Name</th>
@@ -50,7 +54,6 @@
                                 <tbody>
                                     @foreach ($employeds as $employed)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
                                             
 											<td>{{ $employed->id_employed }}</td>
 											<td>{{ $employed->first_name }}</td>

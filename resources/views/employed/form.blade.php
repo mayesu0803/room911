@@ -22,14 +22,15 @@
             {!! $errors->first('last_name', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
+
             {{ Form::label('room_access') }}
-            {{ Form::checkbox('room_access', $employed->room_access, ['class' => 'form-control' . ($errors->has('room_access') ? ' is-invalid' : ''), 'placeholder' => 'Room Access']) }}
-            {!! $errors->first('room_access', '<div class="invalid-feedback">:message</p>') !!}
+            {{Form::checkbox('room_access', false )}}
+            
         </div>
+               
         <div class="form-group">
-            {{ Form::label('id_department') }}
-            {{ Form::text('id_department', $employed->id_department, ['class' => 'form-control' . ($errors->has('id_department') ? ' is-invalid' : ''), 'placeholder' => 'Id Department']) }}
-            {!! $errors->first('id_department', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('id_department'), 'Department:' }}
+            {!! Form::select('id_department', $departments, null, ['class' => 'form-control']) !!}
         </div>
 
     </div>

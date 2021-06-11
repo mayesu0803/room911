@@ -27,9 +27,9 @@ class Employeds extends Migration
             $table->string('middle_name');
             $table->string('last_name');
             $table->boolean('room_access')->default(false);
+            $table->timestamp('date_deleted')->nullable();
             $table->bigInteger('id_department')->unsigned();
             $table->foreign('id_department')->references('id')->on('departments');
-
             $table->timestamps();
         });
     }

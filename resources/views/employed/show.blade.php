@@ -41,6 +41,10 @@
                             {{ $employed->room_access }}
                         </div>
                         <div class="form-group">
+                            <strong>Date Deleted:</strong>
+                            {{ $employed->date_deleted }}
+                        </div>
+                        <div class="form-group">
                             <strong>Id Department:</strong>
                             {{ $employed->id_department }}
                         </div>

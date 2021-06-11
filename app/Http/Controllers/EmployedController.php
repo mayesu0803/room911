@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employed;
 use Illuminate\Http\Request;
+use App\Models\Department;
 
 /**
  * Class EmployedController
@@ -31,8 +32,10 @@ class EmployedController extends Controller
      */
     public function create()
     {
+        $departments = Department::pluck('name', 'id');
+
         $employed = new Employed();
-        return view('employed.create', compact('employed'));
+        return view('employed.create', compact('employed', 'departments'));
     }
 
     /**
@@ -43,9 +46,6 @@ class EmployedController extends Controller
      */
     public function store(Request $request)
     {
-        print_r($request)
-        //$request->employed['room_access']? true : false;
-
         request()->validate(Employed::$rules);
 
         $employed = Employed::create($request->all());
@@ -76,8 +76,9 @@ class EmployedController extends Controller
     public function edit($id)
     {
         $employed = Employed::find($id);
+        $departments = Department::pluck('name', 'id');
 
-        return view('employed.edit', compact('employed'));
+        return view('employed.edit', compact('employed','departments'));
     }
 
     /**

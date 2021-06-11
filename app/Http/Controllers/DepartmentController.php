@@ -56,6 +56,7 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
+        print($request);
         request()->validate(Department::$rules);
 
         $department = Department::create($request->all());

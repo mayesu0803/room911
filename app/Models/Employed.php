@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $middle_name
  * @property $last_name
  * @property $room_access
+ * @property $date_deleted
  * @property $id_department
  * @property $created_at
  * @property $updated_at
@@ -29,11 +30,9 @@ class Employed extends Model
 		'first_name' => 'required',
 		'middle_name' => 'required',
 		'last_name' => 'required',
-		'room_access' => 'required|boolean',
+		//'room_access' => 'required',
 		'id_department' => 'required',
     ];
-
-    
 
     protected $perPage = 20;
 
@@ -42,7 +41,7 @@ class Employed extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_employed','first_name','middle_name','last_name','room_access','id_department'];
+    protected $fillable = ['id_employed','first_name','middle_name','last_name','room_access','date_deleted','id_department'];
 
 
     /**

@@ -2,11 +2,8 @@
 
 namespace App\Imports;
 
-use App\Models\Department;
-use Illuminate\Support\Facades\Hash;
+use App\Department;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
-
 
 class DepartmentsImport implements ToModel
 {
@@ -18,8 +15,7 @@ class DepartmentsImport implements ToModel
     public function model(array $row)
     {
         return new Department([
-            'Name'     => $row[0]
+            //
         ]);
     }
 }
-

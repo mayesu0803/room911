@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ Route::post('file-import', [UserController::class, 'fileImport'])->name('file-im
 Route::get('file-export', [UserController::class, 'fileExport'])->name('file-export');
 */
 
-Route::get('file-import-export', [DepartmentController::class, 'fileImportExport']);
-Route::post('file-import', [DepartmentController::class, 'fileImport'])->name('file-import');
-Route::get('file-export', [DepartmentController::class, 'fileExport'])->name('file-export');
+//Route::get('file-import-export', [EmployedController::class, 'fileImportExport']);
+Route::post('file-import', [EmployedController::class, 'fileImport'])->name('file-import');
+//Route::get('file-export', [EmployedController::class, 'fileExport'])->name('file-export');
 

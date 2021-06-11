@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Employed;
 use Illuminate\Http\Request;
 use App\Models\Department;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\EmployedsImport;
 
 /**
  * Class EmployedController
@@ -17,6 +19,13 @@ class EmployedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function fileImport(Request $request) 
+    {
+        Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
+        return redirect()->route('employeds.index')
+            ->with('success', 'Employeds created successfully.');
+    }
+
     public function index()
     {
         $employeds = Employed::paginate();

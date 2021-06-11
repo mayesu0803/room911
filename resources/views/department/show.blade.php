@@ -22,7 +22,7 @@
                         
                         <div class="form-group">
                             <strong>Name:</strong>
-                            {{ $department->Name }}
+                            {{ $department->name }}
                         </div>
 
                     </div>

@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
  * Class Department
  *
  * @property $id
- * @property $Name
+ * @property $name
  * @property $created_at
  * @property $updated_at
  *
+ * @property Employed[] $employeds
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -19,7 +20,7 @@ class Department extends Model
 {
     
     static $rules = [
-		'Name' => 'required',
+		'name' => 'required',
     ];
 
     protected $perPage = 20;
@@ -29,8 +30,16 @@ class Department extends Model
      *
      * @var array
      */
-    protected $fillable = ['Name'];
+    protected $fillable = ['name'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function employeds()
+    {
+        return $this->hasMany('App\Models\Employed', 'id_department', 'id');
+    }
+    
 
 }

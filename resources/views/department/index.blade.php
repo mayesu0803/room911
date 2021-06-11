@@ -46,7 +46,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $department->Name }}</td>
+											<td>{{ $department->name }}</td>
 
                                             <td>
                                                 <form action="{{ route('departments.destroy',$department->id) }}" method="POST">

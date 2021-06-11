@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\DepartmentsImport;
 
 /**
  * Class DepartmentController
@@ -18,17 +16,6 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function fileImportExport()
-    {
-       return view('welcome');
-    }
-
-    public function fileImport(Request $request) 
-    {
-        Excel::import(new DepartmentsImport, $request->file('file')->store('temp'));
-        return back();
-    }
-
     public function index()
     {
         $departments = Department::paginate();
@@ -56,7 +43,6 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        print($request);
         request()->validate(Department::$rules);
 
         $department = Department::create($request->all());

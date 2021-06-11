@@ -32,5 +32,6 @@ Route::get('file-export', [UserController::class, 'fileExport'])->name('file-exp
 
 //Route::get('file-import-export', [EmployedController::class, 'fileImportExport']);
 Route::post('file-import', [EmployedController::class, 'fileImport'])->name('file-import');
+Route::get('export-pdf', [EmployedController::class, 'downloadPdf'])->name('export-pdf');
 //Route::get('file-export', [EmployedController::class, 'fileExport'])->name('file-export');
 

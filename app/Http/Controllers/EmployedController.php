@@ -26,12 +26,6 @@ class EmployedController extends Controller
     {
         //$employeds= Employed::where('date_deleted',' is ', 'null')->paginate();
         $employeds = Employed::paginate(5);
-
-        if($request->has('download'))
-        {
-            $pdf = PDF::loadView('employed.index',compact('employeds'));
-            return $pdf->download('pdfview.pdf');
-        }
         //$datos['employed']=Empleado::paginate(5);
         //return view ('empleado.index', $datos);
         return view('employed.index', compact('employeds'));
@@ -139,5 +133,15 @@ class EmployedController extends Controller
         Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
         return redirect()->route('employeds.index')
             ->with('success', 'Employeds created successfully.');
+    }
+
+    public function downloadPdf()
+    {
+        $employeds = Employed::all();
+
+        // share data to view
+        view()->share('employeds-pdf',$employeds);
+        $pdf = PDF::loadView('employeds-pdf', ['employeds' => $employeds]);
+        return $pdf->download('employeds.pdf');
     }
 }

@@ -15,11 +15,9 @@
                             <span id="card_title">
                                 {{ __('Employed') }}
                             </span>
+                            
                             <div class="float-right">
-                                <a class="btn btn-primary" href="{{route('employeds.index',['download'=>'pdf'])}}">Download PDF</a>
-                            </div>
-
-                             <div class="float-right">
+                                <a href="{{ route('export-pdf') }}" class="btn btn-success btn-sm">Export to PDF</a>
                                 <a href="{{ route('employeds.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>

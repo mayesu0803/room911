@@ -23,7 +23,7 @@ class Department extends Model
 		'name' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 5;
 
     /**
      * Attributes that should be mass-assignable.

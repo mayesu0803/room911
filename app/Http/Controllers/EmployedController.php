@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;
+use Illuminate\Support\Carbon;
 
 /**
  * Class EmployedController
@@ -28,6 +29,7 @@ class EmployedController extends Controller
 
     public function index()
     {
+        //$employeds= Employed::where('date_deleted',' is ', 'null')->paginate();
         $employeds = Employed::paginate();
 
         return view('employed.index', compact('employeds'))
@@ -114,8 +116,19 @@ class EmployedController extends Controller
      */
     public function destroy($id)
     {
-        $employed = Employed::find($id)->delete();
+        $employed = Employed::find($id);
 
+        //if($existingItem){
+        $employed['date_deleted']=Carbon::now();
+        $employed['room_access']=false;
+        $employed->save();
+
+
+        //Employed::where('id','=',$id)->update($employed);
+
+        //$empleado=Empleado::findOrFail($id);
+
+        
         return redirect()->route('employeds.index')
             ->with('success', 'Employed deleted successfully');
     }

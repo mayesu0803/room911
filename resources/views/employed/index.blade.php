@@ -41,6 +41,7 @@
 										<th>Middle Name</th>
 										<th>Last Name</th>
 										<th>Room Access</th>
+                                        <th>Date Deleted</th>
 										<th>Id Department</th>
 
                                         <th></th>
@@ -56,6 +57,7 @@
 											<td>{{ $employed->middle_name }}</td>
 											<td>{{ $employed->last_name }}</td>
 											<td>{{ $employed->room_access }}</td>
+                                            <td>{{ $employed->date_deleted }}</td>
 											<td>{{ $employed->id_department }}</td>
 
                                             <td>

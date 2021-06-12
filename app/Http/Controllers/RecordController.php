@@ -46,31 +46,37 @@ class RecordController extends Controller
     public function store(Request $request)
     {
         //dd($request->all()['id_employed']);
-        $record['date']=Carbon::now();
-        $employed=Employed::where('id_employed', $request->all()['id_employed']);
-       dd($employed->room_access);
+
+        $record = new Record;
+        $record->date = Carbon::now();
+        $employed=Employed::where('id_employed', $request->all()['id_employed'])->get()->first();
+
+         
+//dd(($employed)? true : false);
         if ($employed){
             if($employed->room_access){
-                $record['success']=true;
-                $record['message']="Employed access";
+
+                $record->success = true;
+                $record->message = "Employed access";
             }
             else{
-                $record['success']=true;
-                $record['message']="Access denied";
+                $record->success = false;
+                $record->message = "Access denied";
+                
 
             }
-            $record['id_employed']=8;
+            $record->id_employed = $employed->id;
 
         }else{
-            $record['success']=false;
-            $record['message']="Employed don't exist";
-            $record['id_employed']=8;
+            $record->success = false;
+            $record->message = "Employed don't exist";
+            $record->id_employed = 8;
 
         }
-        request()->validate(Record::$rules);
+        //request()->validate(Record::$rules);
+        $record->save();
 
-
-        $record = Record::create($request->all());
+        //$record = Record::create($request->all());
 
         return redirect()->route('records.index')
             ->with('success', 'Record created successfully.');

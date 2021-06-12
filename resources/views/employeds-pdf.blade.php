@@ -39,7 +39,7 @@
                                     <td>{{ $employed->middle_name }}</td>
                                     <td>{{ $employed->last_name }}</td>
                                     <td>{{ $employed->room_access }}</td>
-                                    <td>{{ $employed->id_department}}</td>
+                                    <td>{{ $employed->department->name}}</td>
                               </tr>
                                     @endforeach
                                 </tbody>

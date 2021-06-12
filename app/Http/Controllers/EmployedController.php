@@ -25,6 +25,10 @@ class EmployedController extends Controller
     public function index(Request $request)
     {
         $employeds = Employed::paginate();
+        $employeds->each(function($employeds){
+            $employeds->department;
+        });
+
 
         return view('employed.index', compact('employeds'))
             ->with('i', (request()->input('page', 1) - 1) * $employeds->perPage());
@@ -100,6 +104,7 @@ class EmployedController extends Controller
         request()->validate(Employed::$rules);
 
         $employed->update($request->all());
+                     
 
         return redirect()->route('employeds.index')
             ->with('success', 'Employed updated successfully');

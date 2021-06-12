@@ -17,6 +17,8 @@
                             </span>
                             
                             <div class="float-right">
+                                
+
                                 <a href="{{ route('export-pdf') }}" class="btn btn-success btn-sm">Export to PDF</a>
                                 <a href="{{ route('employeds.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
@@ -37,7 +39,7 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        
+                                        <th>No</th>
 										<th>Id Employed</th>
 										<th>First Name</th>
 										<th>Middle Name</th>
@@ -52,7 +54,7 @@
                                 <tbody>
                                     @foreach ($employeds as $employed)
                                         <tr>
-                                            
+                                            <td>{{ ++$i }}</td>
 											<td>{{ $employed->id_employed }}</td>
 											<td>{{ $employed->first_name }}</td>
 											<td>{{ $employed->middle_name }}</td>

@@ -6,6 +6,23 @@
 
 @section('content')
     <section class="content container-fluid">
+        <div class="card card-default">
+            <div class="card-header">
+                <span class="card-title">Import file csv</span>
+            </div>
+            <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+                <div class="card-body" >
+                    <div class="custom-file text-left">
+                        <input type="file" name="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <button class="btn btn-primary">Import data</button>
+                </div>
+                
+            </form>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
 
@@ -26,5 +43,6 @@
                 </div>
             </div>
         </div>
+
     </section>
 @endsection

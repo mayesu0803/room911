@@ -12,14 +12,14 @@
     </style>
 </head>
   <body>
-      <div class="container py-5">
-          <div class="card mt-4">
-              <div class="card-header">
-                    <h5 class="card-title font-weight-bold">Laboratorios XYZ - Access ROOM-911</h5>
+      <div >
+          <div >
+              <div >
+                    <h5 >Laboratorios XYZ - Access ROOM-911</h5>
               </div>
-              <div class="card-body">
-                    <table class="table table-striped table-hover">
-                        <thead class="thead">
+              <div>
+                    <table class="table table-bordered">
+                        <thead>
                                 <tr>
                                         
                                     <th>Id Employed</th>
@@ -27,9 +27,7 @@
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
                                     <th>Room Access</th>
-                                    <th>Date Deleted</th>
-                                    <th>Id Department</th>
-                                    <th></th>
+                                    <th>Department</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -41,9 +39,7 @@
                                     <td>{{ $employed->middle_name }}</td>
                                     <td>{{ $employed->last_name }}</td>
                                     <td>{{ $employed->room_access }}</td>
-                                    <td>{{ $employed->date_deleted }}</td>
-                                    <td>{{ $employed->id_department }}</td>
-
+                                    <td>{{ $employed->id_department}}</td>
                               </tr>
                                     @endforeach
                                 </tbody>

@@ -24,11 +24,12 @@ class EmployedController extends Controller
     
     public function index(Request $request)
     {
-        //$employeds= Employed::where('date_deleted',' is ', 'null')->paginate();
-        $employeds = Employed::paginate(5);
-        //$datos['employed']=Empleado::paginate(5);
-        //return view ('empleado.index', $datos);
-        return view('employed.index', compact('employeds'));
+        $employeds = Employed::paginate();
+
+        return view('employed.index', compact('employeds'))
+            ->with('i', (request()->input('page', 1) - 1) * $employeds->perPage());
+        //$employeds = Employed::paginate(5);
+        //return view('employed.index', compact('employeds'));
     }
 
     /**

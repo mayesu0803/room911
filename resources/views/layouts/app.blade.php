@@ -42,6 +42,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('records.index') }}">{{ __('Records') }}</a>
+
+                        
                         </li>
 
                     </ul>
@@ -59,7 +61,7 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register Admin') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else

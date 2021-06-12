@@ -24,7 +24,7 @@ class Employeds extends Migration
             $table->id();
             $table->bigInteger('id_employed')->unique();
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->boolean('room_access')->default(false);
             $table->timestamp('date_deleted')->nullable();

@@ -22,13 +22,14 @@ class EmployedController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function index(Request $request)
+    public function index()
     {
-        $employeds = Employed::paginate();
+        //dd($employeds = Employed::paginate());
+        $employeds = Employed::where('date_deleted', null)->paginate(5);
+
         $employeds->each(function($employeds){
             $employeds->department;
         });
-
 
         return view('employed.index', compact('employeds'))
             ->with('i', (request()->input('page', 1) - 1) * $employeds->perPage());

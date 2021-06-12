@@ -23,7 +23,7 @@ Route::resource('employeds', App\Http\Controllers\EmployedController::class)->mi
 
 Route::resource('departments', App\Http\Controllers\DepartmentController::class)->middleware('auth');
 
-Route::resource('access', App\Http\Controllers\AccessController::class)->middleware('auth');
+Route::resource('records', App\Http\Controllers\RecordController::class)->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 /*

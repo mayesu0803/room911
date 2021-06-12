@@ -40,6 +40,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('departments.index') }}">{{ __('Departments') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('records.index') }}">{{ __('Records') }}</a>
+                        </li>
 
                     </ul>
                     @endif

@@ -24,8 +24,9 @@ class Records extends Migration
             $table->timestamp('date');
             $table->boolean('success');
             $table->string('message')->nulleable();
-            $table->bigInteger('id_employed')->unsigned();
-            $table->foreign('id_employed')->references('id')->on('employeds');
+            $table->bigInteger('id_employed');
+
+            //$table->foreign('id_employed')->references('id')->on('employeds');
 
 
             $table->timestamps();

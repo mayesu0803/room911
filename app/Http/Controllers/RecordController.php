@@ -45,13 +45,12 @@ class RecordController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all()['id_employed']);
-
+        request()->validate(Record::$rules);
         $record = new Record;
-        $record->date = Carbon::now();
+        $record->date = Carbon::now()->timezone('America/Bogota');
+
         $employed=Employed::where('id_employed', $request->all()['id_employed'])->get()->first();
 
-         
 //dd(($employed)? true : false);
         if ($employed){
             if($employed->room_access){
@@ -63,17 +62,16 @@ class RecordController extends Controller
                 $record->success = false;
                 $record->message = "Access denied";
                 
-
             }
             $record->id_employed = $employed->id;
 
         }else{
             $record->success = false;
             $record->message = "Employed don't exist";
-            $record->id_employed = 8;
+            $record->id_employed = $request->all()['id_employed'];
 
         }
-        //request()->validate(Record::$rules);
+        
         $record->save();
 
         //$record = Record::create($request->all());

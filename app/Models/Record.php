@@ -23,9 +23,6 @@ class Record extends Model
 {
     
     static $rules = [
-		'date' => 'required',
-		'success' => 'required',
-		'message' => 'required',
 		'id_employed' => 'required',
     ];
 

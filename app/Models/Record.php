@@ -39,10 +39,10 @@ class Record extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function employed()
+    /*public function employed()
     {
         return $this->hasOne('App\Models\Employed', 'id', 'id_employed');
-    }
+    }*/
     
 
 }

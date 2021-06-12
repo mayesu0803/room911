@@ -26,11 +26,7 @@ Route::resource('departments', App\Http\Controllers\DepartmentController::class)
 Route::resource('records', App\Http\Controllers\RecordController::class)->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-/*
-Route::get('file-import-export', [UserController::class, 'fileImportExport']);
-Route::post('file-import', [UserController::class, 'fileImport'])->name('file-import');
-Route::get('file-export', [UserController::class, 'fileExport'])->name('file-export');
-*/
+
 
 //Route::get('file-import-export', [EmployedController::class, 'fileImportExport']);
 Route::post('file-import', [EmployedController::class, 'fileImport'])->name('file-import');

@@ -41,13 +41,13 @@
                                     <tr>
                                         <th>No</th>
 										<th>Id Employed</th>
+                                        <th>Department</th>
 										<th>First Name</th>
 										<th>Middle Name</th>
 										<th>Last Name</th>
-                                        <th>Date Deleted</th>
-										<th>Department</th>
-
-                                        <th></th>
+                                        <th>Last Access</th>
+                                        <th>Total Access</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,12 +55,12 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 											<td>{{ $employed->id_employed }}</td>
+                                            <td>{{ $employed->name }}</td>
 											<td>{{ $employed->first_name }}</td>
 											<td>{{ $employed->middle_name }}</td>
 											<td>{{ $employed->last_name }}</td>
-                                            <td>{{ $employed->date_deleted }}</td>
-											<td>{{ $employed->department->name }}</td>
-
+                                            <td>{{ $employed->last_date }}</td>
+                                            <td>{{ $employed->total_access }}</</td>
                                             <td>
                                                 <form action="{{ route('employeds.destroy',$employed->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('employeds.show',$employed->id) }}"><i class="fa fa-fw fa-eye">
@@ -72,7 +72,7 @@
                                                     @endif
 
                                                     </a>
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('employeds.show',$employed->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('employeds.show',$employed->id) }}"><i class="fa fa-fw fa-eye"></i> History</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('employeds.edit',$employed->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')

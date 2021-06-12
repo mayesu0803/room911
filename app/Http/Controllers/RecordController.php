@@ -53,6 +53,7 @@ class RecordController extends Controller
 
 //dd(($employed)? true : false);
         if ($employed){
+            
             if($employed->room_access){
 
                 $record->success = true;
@@ -60,10 +61,13 @@ class RecordController extends Controller
             }
             else{
                 if($employed->date_deleted){
+
                     $record->message = "Employed deleted";
+
                 }else{
                     $record->message = "Access denied";
                 }
+
                 $record->success = false;
                 
                 
@@ -71,6 +75,7 @@ class RecordController extends Controller
             $record->id_employed = $employed->id_employed;
 
         }else{
+
             $record->success = false;
             $record->message = "Employed don't exist";
             $record->id_employed = $request->all()['id_employed'];

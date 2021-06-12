@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;
 use Illuminate\Support\Carbon;
 use PDF;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class EmployedController
@@ -21,22 +22,24 @@ class EmployedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function index()
     {
-        //dd($employeds = Employed::paginate());
-        $employeds = Employed::where('date_deleted', null)->paginate(5);
-
-        $employeds->each(function($employeds){
-            $employeds->department;
-        });
+            $employeds = DB::table('employeds')
+            ->leftJoin('records', 'employeds.id_employed', '=', 'records.id_employed')
+            ->Join('departments', 'employeds.id_department', '=', 'departments.id')
+            ->select('employeds.*',
+                    'departments.name',
+                    DB::raw('MAX(records.date) as last_date'), 
+                    DB::raw('count(records.id_employed) as total_access'))
+            ->whereNull('date_deleted')
+            ->groupBy('employeds.id_employed','departments.name')
+            ->paginate(5);
+           //dd($employeds);
 
         return view('employed.index', compact('employeds'))
             ->with('i', (request()->input('page', 1) - 1) * $employeds->perPage());
-        //$employeds = Employed::paginate(5);
-        //return view('employed.index', compact('employeds'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *

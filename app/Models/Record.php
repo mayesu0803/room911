@@ -26,7 +26,7 @@ class Record extends Model
 		'id_employed' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 5;
 
     /**
      * Attributes that should be mass-assignable.

@@ -59,11 +59,16 @@ class RecordController extends Controller
                 $record->message = "Employed access";
             }
             else{
+                if($employed->date_deleted){
+                    $record->message = "Employed deleted";
+                }else{
+                    $record->message = "Access denied";
+                }
                 $record->success = false;
-                $record->message = "Access denied";
+                
                 
             }
-            $record->id_employed = $employed->id;
+            $record->id_employed = $employed->id_employed;
 
         }else{
             $record->success = false;

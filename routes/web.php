@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployedController;
+use App\Http\Controllers\RecordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,5 @@ Route::resource('records', App\Http\Controllers\RecordController::class)->middle
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//Route::get('file-import-export', [EmployedController::class, 'fileImportExport']);
 Route::post('file-import', [EmployedController::class, 'fileImport'])->name('file-import');
 Route::get('export-pdf', [EmployedController::class, 'downloadPdf'])->name('export-pdf');
-//Route::get('file-export', [EmployedController::class, 'fileExport'])->name('file-export');
-

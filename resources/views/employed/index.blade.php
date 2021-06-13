@@ -3,6 +3,10 @@
 @section('template_title')
     Employed
 @endsection
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
+
+@endsection
 
 @section('content')
     <div class="container-fluid">
@@ -36,10 +40,10 @@
                     <div class="card-body">
 
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table id="datatable" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        
 										<th>Id Employed</th>
                                         <th>Department</th>
 										<th>First Name</th>
@@ -53,7 +57,7 @@
                                 <tbody>
                                     @foreach ($employeds as $employed)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            
 											<td>{{ $employed->id_employed }}</td>
                                             <td>{{ $employed->name }}</td>
 											<td>{{ $employed->first_name }}</td>
@@ -86,8 +90,20 @@
                         </div>
                     </div>
                 </div>
-                {!! $employeds->links() !!}
+                
             </div>
         </div>
     </div>
+@endsection
+
+@section('javascripts')
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+        })
+    </script>
+
+
 @endsection

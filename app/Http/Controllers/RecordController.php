@@ -6,6 +6,8 @@ use App\Models\Record;
 use Illuminate\Http\Request;
 use App\Models\Employed;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use DataTables;
 
 /**
  * Class RecordController
@@ -20,12 +22,15 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $records = Record::paginate();
+        $records = Record::all();
+        return view('record.index', compact('records'));
 
-        return view('record.index', compact('records'))
-            ->with('i', (request()->input('page', 1) - 1) * $records->perPage());
     }
 
+    public function ajax()
+    {
+        return view('records.ajax');
+    }
     /**
      * Show the form for creating a new resource.
      *

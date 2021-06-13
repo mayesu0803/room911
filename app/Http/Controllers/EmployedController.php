@@ -10,6 +10,7 @@ use App\Imports\EmployedsImport;
 use Illuminate\Support\Carbon;
 use PDF;
 use Illuminate\Support\Facades\DB;
+use DataTables;
 
 /**
  * Class EmployedController
@@ -32,13 +33,13 @@ class EmployedController extends Controller
                     DB::raw('MAX(records.date) as last_date'), 
                     DB::raw('count(records.id_employed) as total_access'))
             ->whereNull('date_deleted')
-            ->groupBy('employeds.id_employed','departments.name')
-            ->paginate(5);
-           //dd($employeds);
+            ->groupBy('employeds.id_employed','departments.name');
+             $employeds = $employeds->get();
+    //dd($employeds);
 
-        return view('employed.index', compact('employeds'))
-            ->with('i', (request()->input('page', 1) - 1) * $employeds->perPage());
+        return view('employed.index', compact('employeds'));
     }
+    
     
     /**
      * Show the form for creating a new resource.

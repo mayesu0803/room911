@@ -4,6 +4,11 @@
     Record
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
+
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -31,7 +36,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table id="datatable" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
@@ -47,7 +52,7 @@
                                 <tbody>
                                     @foreach ($records as $record)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{  $record->id }}</td>
                                             <td>{{ $record->id_employed }}</td>
 											<td>{{ $record->date }}</td>
 											<td>{{ $record->success }}</td>
@@ -67,8 +72,20 @@
                         </div>
                     </div>
                 </div>
-                {!! $records->links() !!}
             </div>
         </div>
     </div>
+@endsection
+
+@section('javascripts')
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+        })
+    </script>
 @endsection

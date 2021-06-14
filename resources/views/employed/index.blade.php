@@ -44,7 +44,7 @@
                                 <thead class="thead">
                                     <tr>
                                         
-										<th>Id Employed</th>
+										<th>Employed</th>
                                         <th>Department</th>
 										<th>First Name</th>
 										<th>Middle Name</th>
@@ -57,7 +57,6 @@
                                 <tbody>
                                     @foreach ($employeds as $employed)
                                         <tr>
-                                            
 											<td>{{ $employed->id_employed }}</td>
                                             <td>{{ $employed->name }}</td>
 											<td>{{ $employed->first_name }}</td>
@@ -66,28 +65,39 @@
                                             <td>{{ $employed->last_date }}</td>
                                             <td>{{ $employed->total_access }}</</td>
                                             <td>
-                                                <form action="{{ route('employeds.destroy',$employed->id) }}" method="POST">
-                                                    @if                                                  ($employed->room_access)
-                                                    <a class="btn btn-sm btn-primary " onclick="return confirm('Do you disabled access room?')" href="{{ route('employeds.editroom', $employed->id) }}"><i class="fa fa-fw fa-eye"></i>  
-                                                    Enable 
-                                                    </a>
-                                                    @endif
-                                                    @if($employed->room_access==false) 
-                                                    <a class="btn btn-danger btn-sm" onclick="return confirm('Do you enable access room?')" href="{{ route('employeds.editroom', $employed->id) }}"><i class="fa fa-fw fa-eye" ></i>  
-                                                    Disabled
-                                                    </a>
-                                                    @endif                                             
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('employeds.show',$employed->id) }}"><i class="fa fa-fw fa-eye"></i> History</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('employeds.edit',$employed->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Do you want delete?')" value="Delete">          
-                                                    </form>
+                                            <form action="{{ route('employeds.destroy',$employed->id) }}" class="d-inline" method="POST">
+                                                @if                                                  ($employed->room_access)
+                                                <a class="btn btn-sm btn-primary " onclick="return confirm('Do you disabled access room?')" href="{{ route('employeds.editroom', $employed->id) }}"><i class="fa fa-fw fa-eye"></i>  
+                                                Enable
+                                                </a>
+                                                @endif
+                                                @if($employed->room_access==false) 
+                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Do you enable access room?')" href="{{ route('employeds.editroom', $employed->id) }}"><i class="fa fa-fw fa-eye" ></i>  
+                                                Disabled
+                                                </a>
+                                                @endif                                             
+                                                <a class="btn btn-sm btn-primary " href="{{ route('employeds.show',$employed->id) }}"><i class="fa fa-fw fa-eye"></i> History</a>
+                                                <a class="btn btn-sm btn-success" href="{{ route('employeds.edit',$employed->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                            
+                                                @csrf
+                                                @method('DELETE')
+                                                <input class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Do you want delete?')" value="Delete">          
+                                            </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot class="thead">
+                                    <tr>
+                                        <th>Employed</th>
+                                        <th>Department</th>
+                                        <th>First Name</th>
+                                        <th>Middle Name</th>
+                                        <th>Last Name</th>
+                                        <th>Last Access</th>
+                                        <th>Total Access</th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -103,8 +113,30 @@
 
     <script>
         $(document).ready(function () {
-            $('#datatable').DataTable();
-        })
+            //$('#datatable').DataTable();
+            $('#datatable').DataTable( {
+            initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+            }
+        });
+        });
     </script>
 
 

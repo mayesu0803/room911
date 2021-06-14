@@ -26,8 +26,13 @@ Route::resource('departments', App\Http\Controllers\DepartmentController::class)
 
 Route::resource('records', App\Http\Controllers\RecordController::class)->middleware('auth');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::get('editroom/{id}', [EmployedController::class, 'editroom'])->name('employeds.editroom');
 Route::post('file-import', [EmployedController::class, 'fileImport'])->name('file-import');
 Route::get('export-pdf', [EmployedController::class, 'downloadPdf'])->name('export-pdf');
+
+Route::group(['middleware'=>'auth'], function(){
+
+	Route::get('/', [App\Http\Controllers\EmployedController::class, 'index'])->name('employeds');
+
+});

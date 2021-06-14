@@ -97,6 +97,23 @@ class EmployedController extends Controller
         return view('employed.edit', compact('employed','departments'));
     }
 
+    //public function editromm($id, $room_access)
+    public function editroom($id)
+    {
+        $employed = Employed::find($id);
+
+        if($employed['room_access']){
+            $employed['room_access']=false;
+        }else {
+            $employed['room_access']=true;
+
+        }
+        $employed->save();
+
+        return redirect()->route('employeds.index')
+            ->with('success', 'Employed access successfully');
+    }
+
     /**
      * Update the specified resource in storage.
      *

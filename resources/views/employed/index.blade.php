@@ -22,8 +22,8 @@
                             
                             <div class="float-right">
                                 
+                                <a href="{{ route('export-pdf') }}" class="btn btn-success btn-sm"> Export to PDF </a>
 
-                                <a href="{{ route('export-pdf') }}" class="btn btn-success btn-sm">Export to PDF</a>
                                 <a href="{{ route('employeds.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
@@ -67,21 +67,23 @@
                                             <td>{{ $employed->total_access }}</</td>
                                             <td>
                                                 <form action="{{ route('employeds.destroy',$employed->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('employeds.show',$employed->id) }}"><i class="fa fa-fw fa-eye">
-                                                    </i> @if                                                  ($employed->room_access) 
+                                                    @if                                                  ($employed->room_access)
+                                                    <a class="btn btn-sm btn-primary " onclick="return confirm('Do you disabled access room?')" href="{{ route('employeds.editroom', $employed->id) }}"><i class="fa fa-fw fa-eye"></i>  
                                                     Enable 
+                                                    </a>
                                                     @endif
                                                     @if($employed->room_access==false) 
+                                                    <a class="btn btn-danger btn-sm" onclick="return confirm('Do you enable access room?')" href="{{ route('employeds.editroom', $employed->id) }}"><i class="fa fa-fw fa-eye" ></i>  
                                                     Disabled
-                                                    @endif
-
                                                     </a>
+                                                    @endif                                             
                                                     <a class="btn btn-sm btn-primary " href="{{ route('employeds.show',$employed->id) }}"><i class="fa fa-fw fa-eye"></i> History</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('employeds.edit',$employed->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>
+                                                    <input class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Do you want delete?')" value="Delete">          
+                                                    </form>
                                             </td>
                                         </tr>
                                     @endforeach

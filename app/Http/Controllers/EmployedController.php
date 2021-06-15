@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employed;
+use App\Models\Record;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
@@ -76,11 +77,39 @@ class EmployedController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+    /*public function show($id)
+    {
+        $employed = Employed::find($id);
+        //$query = Record::where('id_employed', $employed['id_employed']);
+        //return datatables($query)->make(true);
+        //return view('employed.show', compact('employed',datatables($query)->make(true)));
+
+        return view('employed.show', compact('employed'));
+    }*/
     public function show($id)
     {
         $employed = Employed::find($id);
+        $records = Record::where('id_employed', $employed['id_employed'])->get();
 
-        return view('employed.show', compact('employed'));
+        return view('employed.show', compact('employed', 'records'));
+    }
+
+    /*public function getHistory($id)
+    //public function getHistory()
+    {
+        //$id=121221;
+        $query = Record::where('id_employed', $id);
+        
+        return datatables($query)->make(true);
+    }*/
+
+    public function getHistory()
+    //public function getHistory()
+    {
+        $id=121221;
+        $records = Record::where('id_employed', $id);
+        //dd($query);
+        return datatables($records)->make(true);
     }
 
     /**

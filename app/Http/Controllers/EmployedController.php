@@ -103,14 +103,14 @@ class EmployedController extends Controller
         return datatables($query)->make(true);
     }*/
 
-    public function getHistory()
+    /*public function getHistory()
     //public function getHistory()
     {
         $id=121221;
         $records = Record::where('id_employed', $id);
         //dd($query);
         return datatables($records)->make(true);
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.

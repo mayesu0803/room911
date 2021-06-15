@@ -19,8 +19,8 @@
                             <span class="card-title">Show Employed</span>
                         </div>
                         <div class="float-right">
-                            <a href="{{ route('export-pdf') }}" class="btn btn-success btn-sm"> Export to PDF </a>
-                            <a class="btn btn-primary" href="{{ route('employeds.index') }}"> Back</a>
+                            <a href="{{ route('export-pdf-records', $employed->id_employed) }}" class="btn btn-success btn-sm"> Export to PDF </a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('employeds.index') }}"> Back</a>
                         </div>
                     </div>
                     <div class="card-body">

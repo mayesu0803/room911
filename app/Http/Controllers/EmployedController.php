@@ -195,10 +195,21 @@ class EmployedController extends Controller
     public function downloadPdf()
     {
         $employeds = Employed::all();
-
         // share data to view
         view()->share('employeds-pdf',$employeds);
-        $pdf = PDF::loadView('employeds-pdf', ['employeds' => $employeds]);
+        $pdf = PDF::loadView('employed.employeds-pdf', ['employeds' => $employeds]);
+        return $pdf->download('employeds.pdf');
+    }
+
+    public function downloadPdfRecords($id)
+    {
+        // share data to view
+        $employed = Employed::where('id_employed', $id)->first();
+        //dd($employed);
+        $records = Record::where('id_employed', $id)->get();
+        //dd($records);
+        view()->share('employeds-pdf',$employed, $records);
+        $pdf = PDF::loadView('employeds-pdf', ['employed' => $employed] , ['records' => $records]);
         return $pdf->download('employeds.pdf');
     }
 }

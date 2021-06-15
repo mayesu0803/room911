@@ -30,6 +30,7 @@ Route::resource('records', App\Http\Controllers\RecordController::class)->middle
 Route::get('editroom/{id}', [EmployedController::class, 'editroom'])->name('employeds.editroom');
 Route::post('file-import', [EmployedController::class, 'fileImport'])->name('file-import');
 Route::get('export-pdf', [EmployedController::class, 'downloadPdf'])->name('export-pdf');
+Route::get('export-pdf/{id}', [EmployedController::class, 'downloadPdfRecords'])->name('export-pdf-records');
 
 Route::group(['middleware'=>'auth'], function(){
 

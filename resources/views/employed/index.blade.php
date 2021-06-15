@@ -18,7 +18,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Employed') }}
+                                <h1>{{ __('Access Control Room 911') }}</h1>
                             </span>
                             
                             <div class="float-right">
@@ -67,7 +67,7 @@
 										<th>Last Name</th>
                                         <th>Last Access</th>
                                         <th>Total Access</th>
-                                        <th>Actions</th>
+                                        <th width="280px">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>

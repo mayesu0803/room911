@@ -35,10 +35,10 @@
                     @if (Auth::check())
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('employeds.index') }}">{{ __('Employed') }}</a>
+                            <a class="nav-link" href="{{ route('employeds.index') }}">{{ __('Room 911') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('records.index') }}">{{ __('Simulation Access') }}</a>
+                            <a class="nav-link" href="{{ route('records.index') }}">{{ __('Simulation') }}</a>
                         
                         </li>
                         <li class="nav-item">

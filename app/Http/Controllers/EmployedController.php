@@ -103,7 +103,6 @@ class EmployedController extends Controller
     public function edit($id)
     {
         $employed = Employed::find($id);
-        //dd($employed);
         $departments = Department::pluck('name', 'id');
 
         return view('employed.edit', compact('employed','departments'));
@@ -153,16 +152,9 @@ class EmployedController extends Controller
     {
         $employed = Employed::find($id);
 
-        //if($existingItem){
         $employed['date_deleted']=Carbon::now();
         $employed['room_access']=false;
         $employed->save();
-
-
-        //Employed::where('id','=',$id)->update($employed);
-
-        //$empleado=Empleado::findOrFail($id);
-
         
         return redirect()->route('employeds.index')
             ->with('success', 'Employed deleted successfully');

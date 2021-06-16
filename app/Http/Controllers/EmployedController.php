@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employed;
+use App\Models\Record;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;
 use Illuminate\Support\Carbon;
 use PDF;
+use Illuminate\Support\Facades\DB;
+use DataTables;
 
 /**
  * Class EmployedController
@@ -21,17 +24,24 @@ class EmployedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-    public function index(Request $request)
+    public function index()
     {
-        $employeds = Employed::paginate();
+            $employeds = DB::table('employeds')
+            ->leftJoin('records', 'employeds.id_employed', '=', 'records.id_employed')
+            ->Join('departments', 'employeds.id_department', '=', 'departments.id')
+            ->select('employeds.*',
+                    'departments.name',
+                    DB::raw('MAX(records.date) as last_date'), 
+                    DB::raw('count(records.id_employed) as total_access'))
+            ->whereNull('date_deleted')
+            ->groupBy('employeds.id_employed','departments.name');
+             $employeds = $employeds->get();
+    //dd($employeds);
 
-        return view('employed.index', compact('employeds'))
-            ->with('i', (request()->input('page', 1) - 1) * $employeds->perPage());
-        //$employeds = Employed::paginate(5);
-        //return view('employed.index', compact('employeds'));
+        return view('employed.index', compact('employeds'));
     }
-
+    
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -67,11 +77,13 @@ class EmployedController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+    
     public function show($id)
     {
         $employed = Employed::find($id);
+        $records = Record::where('id_employed', $employed['id_employed'])->get();
 
-        return view('employed.show', compact('employed'));
+        return view('employed.show', compact('employed', 'records'));
     }
 
     /**
@@ -88,6 +100,23 @@ class EmployedController extends Controller
         return view('employed.edit', compact('employed','departments'));
     }
 
+    //public function editromm($id, $room_access)
+    public function editroom($id)
+    {
+        $employed = Employed::find($id);
+
+        if($employed['room_access']){
+            $employed['room_access']=false;
+        }else {
+            $employed['room_access']=true;
+
+        }
+        $employed->save();
+
+        return redirect()->route('employeds.index')
+            ->with('success', 'Employed access update successfully');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -100,6 +129,7 @@ class EmployedController extends Controller
         request()->validate(Employed::$rules);
 
         $employed->update($request->all());
+                     
 
         return redirect()->route('employeds.index')
             ->with('success', 'Employed updated successfully');
@@ -114,16 +144,9 @@ class EmployedController extends Controller
     {
         $employed = Employed::find($id);
 
-        //if($existingItem){
         $employed['date_deleted']=Carbon::now();
         $employed['room_access']=false;
         $employed->save();
-
-
-        //Employed::where('id','=',$id)->update($employed);
-
-        //$empleado=Empleado::findOrFail($id);
-
         
         return redirect()->route('employeds.index')
             ->with('success', 'Employed deleted successfully');
@@ -139,10 +162,21 @@ class EmployedController extends Controller
     public function downloadPdf()
     {
         $employeds = Employed::all();
-
         // share data to view
         view()->share('employeds-pdf',$employeds);
-        $pdf = PDF::loadView('employeds-pdf', ['employeds' => $employeds]);
+        $pdf = PDF::loadView('employed.employeds-pdf', ['employeds' => $employeds]);
+        return $pdf->download('employeds.pdf');
+    }
+
+    public function downloadPdfRecords($id)
+    {
+        // share data to view
+        $employed = Employed::where('id_employed', $id)->first();
+        //dd($employed);
+        $records = Record::where('id_employed', $id)->get();
+        //dd($records);
+        view()->share('employeds-pdf',$employed, $records);
+        $pdf = PDF::loadView('employeds-pdf', ['employed' => $employed] , ['records' => $records]);
         return $pdf->download('employeds.pdf');
     }
 }

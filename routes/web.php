@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployedController;
+use App\Http\Controllers\RecordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +24,16 @@ Route::resource('employeds', App\Http\Controllers\EmployedController::class)->mi
 
 Route::resource('departments', App\Http\Controllers\DepartmentController::class)->middleware('auth');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-/*
-Route::get('file-import-export', [UserController::class, 'fileImportExport']);
-Route::post('file-import', [UserController::class, 'fileImport'])->name('file-import');
-Route::get('file-export', [UserController::class, 'fileExport'])->name('file-export');
-*/
+Route::resource('records', App\Http\Controllers\RecordController::class)->middleware('auth');
 
-//Route::get('file-import-export', [EmployedController::class, 'fileImportExport']);
+
+Route::get('editroom/{id}', [EmployedController::class, 'editroom'])->name('employeds.editroom');
 Route::post('file-import', [EmployedController::class, 'fileImport'])->name('file-import');
 Route::get('export-pdf', [EmployedController::class, 'downloadPdf'])->name('export-pdf');
-//Route::get('file-export', [EmployedController::class, 'fileExport'])->name('file-export');
+Route::get('export-pdf/{id}', [EmployedController::class, 'downloadPdfRecords'])->name('export-pdf-records');
 
+Route::group(['middleware'=>'auth'], function(){
+
+	Route::get('/', [App\Http\Controllers\EmployedController::class, 'index'])->name('employeds');
+
+});

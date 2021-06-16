@@ -18,32 +18,35 @@
                     <h5 >Laboratorios XYZ - Access ROOM-911</h5>
               </div>
               <div>
+                <div class="form-group">
+                    <strong>Id Employed:</strong>
+                    {{ $employed->id_employed }}
+                </div>
+                <div class="form-group">
+                    <strong>Name:</strong>
+                    {{ $employed->first_name }} {{ $employed->middle_name }} {{ $employed->last_name }}
+                </div>
+              </div>
+              <div>
                     <table class="table table-bordered">
                         <thead>
                                 <tr>
-                                        
-                                    <th>Id Employed</th>
-                                    <th>First Name</th>
-                                    <th>Middle Name</th>
-                                    <th>Last Name</th>
-                                    <th>Room Access</th>
-                                    <th>Department</th>
+                                    <th>Date</th>
+                                    <th>Success</th>
+                                    <th>Message</th>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($employeds as $employed)
-                                <tr>
+                        </thead>
+                        <tbody>
+                                @foreach ($records as $record)
+                               <tr>
                                             
-                                    <td>{{ $employed->id_employed }}</td>
-                                    <td>{{ $employed->first_name }}</td>
-                                    <td>{{ $employed->middle_name }}</td>
-                                    <td>{{ $employed->last_name }}</td>
-                                    <td>{{ $employed->room_access }}</td>
-                                    <td>{{ $employed->id_department}}</td>
+                                    <td>{{ $record->date }}</td>
+                                    <td>{{ $record->success}}</td>
+                                    <td>{{ $record->message}}</td>
                               </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
+                        </tbody>
+                    </table>
               </div>
           </div>
       </div>

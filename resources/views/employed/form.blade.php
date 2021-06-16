@@ -21,16 +21,16 @@
             {{ Form::text('last_name', $employed->last_name, ['class' => 'form-control' . ($errors->has('last_name') ? ' is-invalid' : ''), 'placeholder' => 'Last Name']) }}
             {!! $errors->first('last_name', '<div class="invalid-feedback">:message</p>') !!}
         </div>
+       
         <div class="form-group">
-
-            {{ Form::label('room_access') }}
-            {{Form::checkbox('room_access', false )}}
-            
+            {{ Form::label('Access') }}
+            {!! Form::select('room_access', array(false => 'Disabled',true => 'Enable'), $employed->room_access, ['class' => 'form-control']) !!}
         </div>
-               
+
+      
         <div class="form-group">
-            {{ Form::label('id_department'), 'Department:' }}
-            {!! Form::select('id_department', $departments, null, ['class' => 'form-control']) !!}
+            {{ Form::label('Department') }}
+            {!! Form::select('id_department', $departments, $employed->id_department, ['class' => 'form-control']) !!}
         </div>
 
     </div>

@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -35,12 +36,16 @@
                     @if (Auth::check())
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('employeds.index') }}">{{ __('Employed') }}</a>
+                            <a class="nav-link" href="{{ route('employeds.index') }}">{{ __('Room 911') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('records.index') }}">{{ __('Simulation') }}</a>
+                        
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('departments.index') }}">{{ __('Departments') }}</a>
                         </li>
-
+                        
                     </ul>
                     @endif
 
@@ -86,6 +91,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+         
     </div>
+    <!-- Scripts -->
+    
+    @yield('javascripts')
 </body>
 </html>

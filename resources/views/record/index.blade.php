@@ -19,7 +19,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Record') }}
+                                {{ __('Access Simulation') }}
                             </span>
 
                              <div class="float-right">
@@ -84,27 +84,36 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Id Employed</th>
+                                        <th>Date</th>
+                                        <th>Success</th>
+                                        <th>Message</th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+         <br><script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" defer></script>
         </div>
-    </div>
+    </section>
 @endsection
-
 @section('javascripts')
-    
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.1.0/js/dataTables.dateTime.min.js"></script>
-
+    
     <script>
-        var minDate, maxDate;
+
+    var minDate, maxDate;
  
-// Custom filtering function which will search data in column four between two values
+    // Custom filtering function which will search data in column four between two values
     $.fn.dataTable.ext.search.push(
         function( settings, data, dataIndex ) {
             var min = minDate.val();
@@ -122,10 +131,9 @@
             return false;
         }
     );
-     
-    $(document).ready(function() {
-        // Create date inputs
-        minDate = new DateTime($('#min'), {
+    $(document).ready(function () {
+      
+      minDate = new DateTime($('#min'), {
             format: 'MMMM Do YYYY'
         });
         maxDate = new DateTime($('#max'), {
@@ -133,12 +141,32 @@
         });
      
         // DataTables initialisation
-        var table = $('#datatable').DataTable();
-     
-        // Refilter the table
-        $('#min, #max').on('change', function () {
-            table.draw();
+      var table = $('#datatable').DataTable({
+      initComplete: function () {
+      this.api().columns().every( function () {
+          var column = this;
+          var select = $('<select><option value=""></option></select>')
+              .appendTo( $(column.footer()).empty() )
+              .on( 'change', function () {
+                  var val = $.fn.dataTable.util.escapeRegex(
+                      $(this).val()
+                  );
+
+                  column
+                      .search( val ? '^'+val+'$' : '', true, false )
+                      .draw();
+              } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+            }
         });
+      $('#min, #max').on('change', function () {
+      table.draw();
+      });
+
     });
     </script>
 @endsection

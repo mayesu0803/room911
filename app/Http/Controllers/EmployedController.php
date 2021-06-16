@@ -94,24 +94,6 @@ class EmployedController extends Controller
         return view('employed.show', compact('employed', 'records'));
     }
 
-    /*public function getHistory($id)
-    //public function getHistory()
-    {
-        //$id=121221;
-        $query = Record::where('id_employed', $id);
-        
-        return datatables($query)->make(true);
-    }*/
-
-    /*public function getHistory()
-    //public function getHistory()
-    {
-        $id=121221;
-        $records = Record::where('id_employed', $id);
-        //dd($query);
-        return datatables($records)->make(true);
-    }*/
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -121,6 +103,7 @@ class EmployedController extends Controller
     public function edit($id)
     {
         $employed = Employed::find($id);
+        //dd($employed);
         $departments = Department::pluck('name', 'id');
 
         return view('employed.edit', compact('employed','departments'));

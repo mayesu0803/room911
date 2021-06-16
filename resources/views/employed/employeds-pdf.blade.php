@@ -18,32 +18,30 @@
                     <h5 >Laboratorios XYZ - Access ROOM-911</h5>
               </div>
               <div>
-                    <table class="table table-bordered">
-                        <thead>
-                                <tr>
-                                        
-                                    <th>Id Employed</th>
-                                    <th>First Name</th>
-                                    <th>Middle Name</th>
-                                    <th>Last Name</th>
-                                    <th>Room Access</th>
-                                    <th>Department</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($employeds as $employed)
-                                <tr>
-                                            
-                                    <td>{{ $employed->id_employed }}</td>
-                                    <td>{{ $employed->first_name }}</td>
-                                    <td>{{ $employed->middle_name }}</td>
-                                    <td>{{ $employed->last_name }}</td>
-                                    <td>{{ $employed->room_access }}</td>
-                                    <td>{{ $employed->department->name}}</td>
-                              </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                  <table class="table table-bordered">
+                      <thead>
+                        <tr>   
+                            <th>Id Employed</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Room Access</th>
+                            <th>Department</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($employeds as $employed)
+                        <tr>        
+                            <td>{{ $employed->id_employed }}</td>
+                            <td>{{ $employed->first_name }}</td>
+                            <td>{{ $employed->middle_name }}</td>
+                            <td>{{ $employed->last_name }}</td>
+                            <td>{{ $employed->room_access }}</td>
+                            <td>{{ $employed->department->name}}</td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                  </table>
               </div>
           </div>
       </div>

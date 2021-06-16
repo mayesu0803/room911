@@ -79,6 +79,7 @@
                 </div>
                 </div>
             </div>
+            <br><script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" defer></script>
         </div>
     </section>
 @endsection

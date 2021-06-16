@@ -26,7 +26,9 @@
                                 
                                 <a href="{{ route('export-pdf') }}" class="btn btn-success btn-sm"> Export to PDF </a>
 
-                                <a class="btn btn-primary btn-sm float-right" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.create')}}"> {{ __('Create New') }}</a>
+                                <a href="{{ route('employeds.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
+                                </a>
 
                             </div>
 
@@ -81,17 +83,18 @@
                                         <td>
                                         <form action="{{ route('employeds.destroy',$employed->id) }}" class="d-inline" method="POST">               
 
-                                        <a class="btn btn-sm btn-success" data-toggle="modal" id="mediumButton" data-target="#mediumModal"
-                                        data-attr="{{ route('employeds.edit',$employed->id) }}">Edit
-                                        </a>
+                                            <a class="btn btn-sm btn-success" href="{{ route('employeds.edit',$employed->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+
                                             @if($employed->room_access)
                                             <a class="btn btn-sm btn-primary " onclick="return confirm('Do you disabled access room?')" href="{{ route('employeds.editroom', $employed->id) }}">  
                                             Enable</a>
                                             @endif
+
                                             @if($employed->room_access==false) 
                                             <a class="btn btn-danger btn-sm" onclick="return confirm('Do you enable access room?')" href="{{ route('employeds.editroom', $employed->id)}}"> 
                                             Disabled</a>
-                                            @endif                                             
+                                            @endif
+                                            
                                             <a class="btn btn-sm btn-primary " href="{{ route('employeds.show',$employed->id) }}"><i class="fa fa-fw fa-eye"></i>History</a>
                                         
                                             @csrf

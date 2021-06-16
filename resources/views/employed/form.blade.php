@@ -23,14 +23,13 @@
         </div>
        
         <div class="form-group">
-            {{ Form::label('room_access')}}
-            {{ Form::text('room_access', $employed->room_access, ['class' => 'form-control' . ($errors->has('room_access') ? ' is-invalid' : ''), 'placeholder' => 'Room Access']) }}
-            {!! $errors->first('last_name', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('Access:'), '' }}
+            {!! Form::select('room_access', array(true => 'Enable', false => 'Disabled'), $employed->room_access, ['class' => 'form-control']) !!}
         </div>
 
       
         <div class="form-group">
-            {{ Form::label('id_department'), 'Department:' }}
+            {{ Form::label('Department:'), '' }}
             {!! Form::select('id_department', $departments, $employed->id_department, ['class' => 'form-control']) !!}
         </div>
 

@@ -94,9 +94,9 @@
 
          
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- Scripts -->
     
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     @yield('javascripts')
 </body>
 </html>

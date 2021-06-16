@@ -19,7 +19,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                <h1>{{ __('Access Control Room 911') }}</h1>
+                                <h2>{{ __('Access Control Room 911') }}</h2>
                             </span>
                             
                             <div class="float-right">
@@ -134,94 +134,6 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.1.0/js/dataTables.dateTime.min.js"></script>
-    <script>
-
-        // display a modal (medium modal)
-        $(document).on('click', '#mediumButton', function(event) {
-            event.preventDefault();
-            let href = $(this).attr('data-attr');
-            console.log(href);
-            $.ajax({
-                url: href,
-                beforeSend: function() {
-                    $('#loader').show();
-                },
-                // return the result
-                success: function(result) {
-                    $('#mediumModal').modal("show");
-                    $('#mediumBody').html(result).show();
-                },
-                complete: function() {
-                    $('#loader').hide();
-                },
-                error: function(jqXHR, testStatus, error) {
-                    console.log(error);
-                    alert("Page " + href + " cannot open. Error:" + error);
-                    $('#loader').hide();
-                },
-                timeout: 8000
-            })
-        });
-
-    </script>
-
-    <script>
-    var minDate, maxDate;
- 
-    // Custom filtering function which will search data in column four between two values
-    $.fn.dataTable.ext.search.push(
-        function( settings, data, dataIndex ) {
-            var min = minDate.val();
-            var max = maxDate.val();
-            var date = new Date( data[5] );
-     
-            if (
-                ( min === null && max === null ) ||
-                ( min === null && date <= max ) ||
-                ( min <= date   && max === null ) ||
-                ( min <= date   && date <= max )
-            ) {
-                return true;
-            }
-            return false;
-        }
-    );
-    $(document).ready(function () {
-      
-      minDate = new DateTime($('#min'), {
-            format: 'MMMM Do YYYY'
-        });
-        maxDate = new DateTime($('#max'), {
-            format: 'MMMM Do YYYY'
-        });
-     
-        // DataTables initialisation
-      var table = $('#datatable').DataTable({
-      initComplete: function () {
-      this.api().columns().every( function () {
-          var column = this;
-          var select = $('<select><option value=""></option></select>')
-              .appendTo( $(column.footer()).empty() )
-              .on( 'change', function () {
-                  var val = $.fn.dataTable.util.escapeRegex(
-                      $(this).val()
-                  );
-
-                  column
-                      .search( val ? '^'+val+'$' : '', true, false )
-                      .draw();
-              } );
-
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-            }
-        });
-      $('#min, #max').on('change', function () {
-      table.draw();
-      });
-
-    });
-    </script>
+    <script src="{{ asset('js/filtersEmployee.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/modal.js') }}"></script>
 @endsection

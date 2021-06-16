@@ -37,18 +37,15 @@
                     <div class="card-body">
                         <div>
                             <table border="0" cellspacing="5" cellpadding="5">
-                                <tbody>
-                                    <tr>
-                                        <td>Minimum date:</td>
-                                        <td><input type="text" id="min" name="min"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Maximum date:</td>
-                                        <td><input type="text" id="max" name="max"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
+                            <tbody>
+                                <tr>
+                                    <td>From:</td>
+                                    <td><input type="text" id="min" name="min"></th>
+                                    <td>To:</td>
+                                    <td><input type="text" id="max" name="max"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                         </div>
                         <div class="table-responsive">
                             <table id="datatable" class="table table-striped table-hover">
@@ -95,12 +92,10 @@
                     </div>
                 </div>
             </div>
-         <br><script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" defer></script>
         </div>
     </section>
 @endsection
 @section('javascripts')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

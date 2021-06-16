@@ -1,4 +1,3 @@
-
 var minDate, maxDate;
  
     // Custom filtering function which will search data in column four between two values

@@ -77,15 +77,7 @@ class EmployedController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    /*public function show($id)
-    {
-        $employed = Employed::find($id);
-        //$query = Record::where('id_employed', $employed['id_employed']);
-        //return datatables($query)->make(true);
-        //return view('employed.show', compact('employed',datatables($query)->make(true)));
-
-        return view('employed.show', compact('employed'));
-    }*/
+    
     public function show($id)
     {
         $employed = Employed::find($id);
@@ -122,7 +114,7 @@ class EmployedController extends Controller
         $employed->save();
 
         return redirect()->route('employeds.index')
-            ->with('success', 'Employed access successfully');
+            ->with('success', 'Employed access update successfully');
     }
 
     /**

@@ -52,7 +52,7 @@ class RecordController extends Controller
     {
         request()->validate(Record::$rules);
         $record = new Record;
-        $record->date = Carbon::now()->timezone('America/Bogota');
+        $record->date = Carbon::now();
 
         $employed=Employed::where('id_employed', $request->all()['id_employed'])->get()->first();
 

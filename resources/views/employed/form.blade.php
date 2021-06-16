@@ -23,13 +23,13 @@
         </div>
        
         <div class="form-group">
-            {{ Form::label('Access:'), '' }}
-            {!! Form::select('room_access', array(true => 'Enable', false => 'Disabled'), $employed->room_access, ['class' => 'form-control']) !!}
+            {{ Form::label('Access:') }}
+            {!! Form::select('room_access', array(false => 'Disabled',true => 'Enable'), $employed->room_access, ['class' => 'form-control']) !!}
         </div>
 
       
         <div class="form-group">
-            {{ Form::label('Department:'), '' }}
+            {{ Form::label('Department:') }}
             {!! Form::select('id_department', $departments, $employed->id_department, ['class' => 'form-control']) !!}
         </div>
 

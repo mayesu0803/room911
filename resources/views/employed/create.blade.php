@@ -27,7 +27,6 @@
             @csrf
                 <div class="card-body" >
                     <div class="form-control">
-                        
                         {{ Form::file('file', null ,['class' => 'form-control' . ($errors->has('file') ? ' is-invalid' : '')]) }}
                     </div>
                     <button class="btn btn-primary">Import data</button>

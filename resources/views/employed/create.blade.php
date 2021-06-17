@@ -26,8 +26,19 @@
             <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <div class="card-body" >
-                    <div class="form-control">
-                        {{ Form::file('file', null ,['class' => 'form-control' . ($errors->has('file') ? ' is-invalid' : '')]) }}
+                    <div class="custom-file text-left">
+                        {{ Form::file('file', null ,['class' => 'btn btn-primary' . ($errors->has('file') ? ' is-invalid' : '')]) }}
+                    </div>
+                    <button class="btn btn-primary">Import data</button>
+                </div>
+                
+            </form>
+            <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+                <div class="card-body" >
+                    <div class="custom-file text-left">
+                        <input type="file" name="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                     <button class="btn btn-primary">Import data</button>
                 </div>

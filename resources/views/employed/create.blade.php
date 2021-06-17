@@ -6,16 +6,29 @@
 
 @section('content')
     <section class="content container-fluid">
+
+
+    
         <div class="card card-default">
             <div class="card-header">
                 <span class="card-title">Import file csv</span>
             </div>
+            @if($errors->first('file'))
+
+            <div class="alert alert-danger" role="alert" >
+                <ul>
+                        <li>{{$errors->first('file')}}</li>
+                   
+                </ul>
+            </div>
+            @endif
+            @includeif('partials.errors')
             <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <div class="card-body" >
-                    <div class="custom-file text-left">
-                        <input type="file" name="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    <div class="form-control">
+                        
+                        {{ Form::file('file', null ,['class' => 'form-control' . ($errors->has('file') ? ' is-invalid' : '')]) }}
                     </div>
                     <button class="btn btn-primary">Import data</button>
                 </div>

@@ -32,8 +32,8 @@ var minDate, maxDate;
       initComplete: function () {
       this.api().columns().every( function () {
           var column = this;
-          var select = $('<select><option value=""></option></select>')
-              .appendTo( $(column.footer()).empty() )
+          var select = $('<select><option value="">All</option></select>')
+              .appendTo( $(column.header()))
               .on( 'change', function () {
                   var val = $.fn.dataTable.util.escapeRegex(
                       $(this).val()

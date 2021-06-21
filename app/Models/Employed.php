@@ -26,7 +26,7 @@ class Employed extends Model
 {
     
     static $rules = [
-		'id_employed' => 'required|unique:employeds|numeric',
+		'id_employed' => 'required|numeric',
 		'first_name' => 'required',
 		'last_name' => 'required',
 		'id_department' => 'required',

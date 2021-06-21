@@ -21,9 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('employeds', App\Http\Controllers\EmployedController::class)->middleware('auth');
-
 Route::resource('departments', App\Http\Controllers\DepartmentController::class)->middleware('auth');
-
 Route::resource('records', App\Http\Controllers\RecordController::class)->middleware('auth');
 
 

@@ -64,6 +64,7 @@ class EmployedController extends Controller
      */
     public function store(Request $request)
     {
+        
         request()->validate(Employed::$rules);
 
         $employed = Employed::create($request->all());

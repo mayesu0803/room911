@@ -50,9 +50,9 @@
                         <table id="datatable" class="table table-striped table-hover">
                             <thead class="thead">
                                 <tr> 
-                                    <th>Date</th>
-                                    <th>Message</th>
-                                    <th>Success</th>
+                                    <th>Date: </th>
+                                    <th>Message: </th>
+                                    <th>Success: </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,18 +60,14 @@
                                 <tr>
                                     <td>{{ $record->date }}</td>
                                     <td>{{ $record->message }}</td>
-                                    <td>{{ $record->success }}</td>
+                                    @if ($record->success)
+                                            <td>Yes</td>
+                                            @else
+                                            <td>No</td>
+                                            @endif
                                 </tr>
                                 @endforeach
                             </tbody>
-
-                            <tfoot class="tfoot">
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Message</th>
-                                    <th>Success</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>

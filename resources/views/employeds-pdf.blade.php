@@ -41,7 +41,11 @@
                                <tr>
                                             
                                     <td>{{ $record->date }}</td>
-                                    <td>{{ $record->success}}</td>
+                                    @if ($record->success)
+                                    <td>Yes</td>
+                                    @else
+                                    <td>Yes</td>
+                                    @endif
                                     <td>{{ $record->message}}</td>
                               </tr>
                                     @endforeach

@@ -51,12 +51,11 @@
                             <table id="datatable" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Id Employed</th>
-										<th>Date</th>
-										<th>Success</th>
-										<th>Message</th>
-                                        <th></th>
+                                        <th>No: 
+                                        <th>Id Employed: </th>
+                                        <th>Date: </th>
+										<th>Success: </th>
+										<th>Message: </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,28 +64,17 @@
                                             <td>{{  $record->id }}</td>
                                             <td>{{ $record->id_employed }}</td>
 											<td>{{ $record->date }}</td>
-											<td>{{ $record->success }}</td>
+                                            @if ($record->success)
+											<td>Yes</td>
+                                            @else
+                                            <td>No</td>
+                                            @endif
 											<td>{{ $record->message }}</td>
 											
-                                            <td>
-                                                <form action="{{ route('records.destroy',$record->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Id Employed</th>
-                                        <th>Date</th>
-                                        <th>Success</th>
-                                        <th>Message</th>
-                                    </tr>
-                                </tfoot>
+                                
                             </table>
                         </div>
                     </div>

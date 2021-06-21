@@ -23,7 +23,7 @@ class Record extends Model
 {
     
     static $rules = [
-		'id_employed' => 'required',
+		'id_employed' => 'required|numeric',
     ];
 
     protected $perPage = 5;

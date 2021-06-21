@@ -20,24 +20,31 @@
               <div>
                   <table class="table table-bordered">
                       <thead>
-                        <tr>   
-                            <th>Id Employed</th>
+                        <tr> 
+                            <th>Date deleted</th>
+                            <th>Id Employee</th>
+                            <th>Department</th>
                             <th>First Name</th>
                             <th>Middle Name</th>
                             <th>Last Name</th>
                             <th>Room Access</th>
-                            <th>Department</th>
+
                         </tr>
                       </thead>
                       <tbody>
                         @foreach ($employeds as $employed)
-                        <tr>        
+                        <tr>    
+                            <td>{{ $employed->date_deleted }}</td>    
                             <td>{{ $employed->id_employed }}</td>
+                            <td>{{ $employed->department->name}}</td>
                             <td>{{ $employed->first_name }}</td>
                             <td>{{ $employed->middle_name }}</td>
                             <td>{{ $employed->last_name }}</td>
-                            <td>{{ $employed->room_access }}</td>
-                            <td>{{ $employed->department->name}}</td>
+                            @if ($employed->room_access)
+                                <td>Enable</td>
+                                @else
+                                <td>Disabled</td>
+                                @endif
                         </tr>
                         @endforeach
                       </tbody>

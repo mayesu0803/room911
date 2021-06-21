@@ -20,7 +20,7 @@ class Department extends Model
 {
     
     static $rules = [
-		'name' => 'required',
+		'name' => 'required|unique:departments',
     ];
 
     protected $perPage = 5;

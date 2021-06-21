@@ -27,10 +27,7 @@ class RecordController extends Controller
 
     }
 
-    public function ajax()
-    {
-        return view('records.ajax');
-    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -56,21 +53,20 @@ class RecordController extends Controller
 
         $employed=Employed::where('id_employed', $request->all()['id_employed'])->get()->first();
 
-//dd(($employed)? true : false);
         if ($employed){
             
             if($employed->room_access){
 
                 $record->success = true;
-                $record->message = "Employed access";
+                $record->message = "Employee have access";
             }
             else{
                 if($employed->date_deleted){
 
-                    $record->message = "Employed deleted";
+                    $record->message = "Employee deleted";
 
                 }else{
-                    $record->message = "Access denied";
+                    $record->message = "Employee don't have access now";
                 }
 
                 $record->success = false;
@@ -82,73 +78,16 @@ class RecordController extends Controller
         }else{
 
             $record->success = false;
-            $record->message = "Employed don't exist";
+            $record->message = "Employee don't exist yet";
             $record->id_employed = $request->all()['id_employed'];
 
         }
         
         $record->save();
 
-        //$record = Record::create($request->all());
-
         return redirect()->route('records.index')
             ->with('success', 'Record created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $record = Record::find($id);
-
-        return view('record.show', compact('record'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $record = Record::find($id);
-
-        return view('record.edit', compact('record'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Record $record
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Record $record)
-    {
-        request()->validate(Record::$rules);
-
-        $record->update($request->all());
-        
-
-        return redirect()->route('records.index')
-            ->with('success', 'Record updated successfully');
-    }
-
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function destroy($id)
-    {
-        $record = Record::find($id)->delete();
-
-        return redirect()->route('records.index')
-            ->with('success', 'Record deleted successfully');
-    }
+    
 }

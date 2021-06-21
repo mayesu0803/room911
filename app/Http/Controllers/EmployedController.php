@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employed;
 use App\Models\Record;
 use Illuminate\Http\Request;
+use Illuminate\Validator;
 use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;
@@ -126,13 +127,12 @@ class EmployedController extends Controller
      */
     public function update(Request $request, Employed $employed)
     {
-        request()->validate(Employed::$rules);
-
+        request()->validate(Employed::$rules);        
+               
         $employed->update($request->all());
-                     
-
-        return redirect()->route('employeds.index')
+            return redirect()->route('employeds.index')
             ->with('success', 'Employed updated successfully');
+        
     }
 
     /**
@@ -154,9 +154,16 @@ class EmployedController extends Controller
 
     public function fileImport(Request $request) 
     {
+        $campos=[
+            'file'=>'required|mimes:csv'
+        ];
+        
+        $this->validate($request, $campos);
+        
         Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
         return redirect()->route('employeds.index')
-            ->with('success', 'Employeds created successfully.');
+        ->with('success', 'Employeds created successfully.');
+
     }
 
     public function downloadPdf()
@@ -170,13 +177,11 @@ class EmployedController extends Controller
 
     public function downloadPdfRecords($id)
     {
-        // share data to view
         $employed = Employed::where('id_employed', $id)->first();
-        //dd($employed);
         $records = Record::where('id_employed', $id)->get();
-        //dd($records);
+
         view()->share('employeds-pdf',$employed, $records);
         $pdf = PDF::loadView('employeds-pdf', ['employed' => $employed] , ['records' => $records]);
-        return $pdf->download('employeds.pdf');
+        return $pdf->download('employed-history.pdf');
     }
 }

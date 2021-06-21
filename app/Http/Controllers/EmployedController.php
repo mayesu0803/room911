@@ -182,6 +182,6 @@ class EmployedController extends Controller
 
         view()->share('employeds-pdf',$employed, $records);
         $pdf = PDF::loadView('employeds-pdf', ['employed' => $employed] , ['records' => $records]);
-        return $pdf->download('employeds.pdf');
+        return $pdf->download('employed-history.pdf');
     }
 }

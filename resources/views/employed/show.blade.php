@@ -60,7 +60,11 @@
                                 <tr>
                                     <td>{{ $record->date }}</td>
                                     <td>{{ $record->message }}</td>
-                                    <td>{{ $record->success }}</td>
+                                    @if ($record->success)
+                                            <td>Yes</td>
+                                            @else
+                                            <td>No</td>
+                                            @endif
                                 </tr>
                                 @endforeach
                             </tbody>

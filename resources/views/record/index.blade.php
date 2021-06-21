@@ -64,7 +64,11 @@
                                             <td>{{  $record->id }}</td>
                                             <td>{{ $record->id_employed }}</td>
 											<td>{{ $record->date }}</td>
-											<td>{{ $record->success }}</td>
+                                            @if ($record->success)
+											<td>Yes</td>
+                                            @else
+                                            <td>No</td>
+                                            @endif
 											<td>{{ $record->message }}</td>
 											
                                         </tr>

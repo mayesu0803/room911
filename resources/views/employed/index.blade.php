@@ -88,9 +88,7 @@
                                             @if($employed->room_access)
                                             <a class="btn btn-sm btn-primary " onclick="return confirm('Do you disabled access room?')" href="{{ route('employeds.editroom', $employed->id) }}">  
                                             Enable</a>
-                                            @endif
-
-                                            @if($employed->room_access==false) 
+                                            @else
                                             <a class="btn btn-danger btn-sm" onclick="return confirm('Do you enable access room?')" href="{{ route('employeds.editroom', $employed->id)}}"> 
                                             Disabled</a>
                                             @endif

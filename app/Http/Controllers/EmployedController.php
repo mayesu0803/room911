@@ -127,13 +127,7 @@ class EmployedController extends Controller
      */
     public function update(Request $request, Employed $employed)
     {
-        
-        $validator = Validator::make(request->all(), Employed::$rules);
-        dd($validator);
-        if ($validator->fails()) {
-
-        }
-        
+        request()->validate(Employed::$rules);        
                
         $employed->update($request->all());
             return redirect()->route('employeds.index')
@@ -183,11 +177,9 @@ class EmployedController extends Controller
 
     public function downloadPdfRecords($id)
     {
-        // share data to view
         $employed = Employed::where('id_employed', $id)->first();
-        //dd($employed);
         $records = Record::where('id_employed', $id)->get();
-        //dd($records);
+
         view()->share('employeds-pdf',$employed, $records);
         $pdf = PDF::loadView('employeds-pdf', ['employed' => $employed] , ['records' => $records]);
         return $pdf->download('employeds.pdf');

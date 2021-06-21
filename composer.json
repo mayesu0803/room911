@@ -14,7 +14,9 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "maatwebsite/excel": "^3.1",
-        "yajra/laravel-datatables": "^1.5"
+        "yajra/laravel-datatables": "^1.5",
+        "fakerphp/faker": "^1.9.1"
+
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -25,11 +25,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
         Paginator::useBootstrap();
         if (env('REDIRECT_HTTPS')) {
-       $url->formatScheme('https://');
-   }
+            $url->formatScheme('https://');
+        }
     }
 }

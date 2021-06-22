@@ -34,18 +34,19 @@
                     @endif
 
                     <div class="card-body">
-                        <div>
-                            <table border="0" cellspacing="5" cellpadding="5">
-                            <tbody>
-                                <tr>
-                                    <td>From:</td>
-                                    <td><input type="text" id="min" name="min"></th>
-                                    <td>To:</td>
-                                    <td><input type="text" id="max" name="max"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                        <div class="input-group">
+                            <div class="form-group">
+                                <strong>From:</strong>
+                                <input type="text" id="min" name="min">
+                            </div>
+                            <div class="form-group">
+                                <strong> To:</strong>
+                                <input type="text" id="max" name="max">
+                            </div>
+                            
                         </div>
+                        
                         <div class="table-responsive">
                             <table id="datatable" class="table table-striped table-hover">
                                 <thead class="thead">

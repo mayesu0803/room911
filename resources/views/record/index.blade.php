@@ -22,8 +22,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('records.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                <a href="{{ route('records.create') }}" class="btn float-right"  data-placement="left"><i class="fas fa-2x fa-plus-square"></i>
                                 </a>
                               </div>
                         </div>

@@ -24,7 +24,7 @@
                             
                             <div class="float-right">
                                 
-                                <a href="{{ route('export-pdf') }}" class="btn"><i class="fas fa-2x fa-file-pdf"></i></a>
+                                <a href="{{ route('export-pdf') }}" class="btn float-right"><i class="fas fa-2x fa-file-pdf"></i></a>
 
                                 <a href="{{ route('employeds.create') }}" class="btn float-right"  data-placement="left"><i class="fas fa-2x fa-plus-square"></i>
                                   

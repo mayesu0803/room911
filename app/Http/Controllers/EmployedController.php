@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employed;
 use App\Models\Record;
 use Illuminate\Http\Request;
-use Illuminate\Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;
@@ -164,22 +164,33 @@ class EmployedController extends Controller
         ];
         
         $this->validate($request, $campos);
+        $rules = [
+        'id_employed' => 'unique:employeds',
+        ];
+        $messages = ['id_employed.unique' => 'hola'];
+        $imports= Excel::toArray(new EmployedsImport, $request->file('file')->store('temp'));
+        for ($i=0; $i < $imports; $i++) { 
+            # code...
+        }
+        foreach ($imports as $insert) {
+
+            dd($insert->first()); //problema no está recorriendo el arreglo
+            $validator = Validator::make($insert ,  $this->$rules);
+            dd($validator->errors());
+
+        }
+        //$validator = Validator::make($prueba, $rules, $messages);
+        dd($validator->errors());
+        if ($validator->fails()){
+            dd($prueba);
+            return redirect()->route('employed.create')->withErrors($validator);
+        }
+        
         
         Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
+        request()->validate(EmployedsImport::$rules);
         return redirect()->route('employeds.index')
         ->with('success', 'Employeds created successfully.');
-        try {
-    $import->import('import-users.xlsx');
-} catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
-     $failures = $e->failures();
-     
-     foreach ($failures as $failure) {
-         $failure->row(); // row that went wrong
-         $failure->attribute(); // either heading key (if using heading row concern) or column index
-         $failure->errors(); // Actual error messages from Laravel validator
-         $failure->values(); // The values of the row that has failed.
-     }
-}
 
     }
 

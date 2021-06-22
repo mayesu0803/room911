@@ -16,7 +16,7 @@ class EmployedsImport implements ToModel
     public function model(array $row)
     {
         return new Employed([
-            'id_employed'    => $row[0],
+            'id_employed'    => $row['id_employed'],
             'first_name'     => $row[1],
             'middle_name'    => $row[2],
             'last_name'      => $row[3],
@@ -25,5 +25,8 @@ class EmployedsImport implements ToModel
             'id_department'  => $row[5]
 
         ]);
+
+
     }
+    
 }

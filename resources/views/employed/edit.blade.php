@@ -21,6 +21,11 @@
                             @csrf
 
                             @include('employed.form')
+                            @if($errors->all())
+                              <script type="text/javascript">
+                                  $('#myModal').modal("show");
+                              </script>
+                              @endif
 
                         </form>
                     </div>

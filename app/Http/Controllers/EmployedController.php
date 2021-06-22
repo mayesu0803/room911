@@ -37,7 +37,6 @@ class EmployedController extends Controller
             ->whereNull('date_deleted')
             ->groupBy('employeds.id_employed','departments.name');
              $employeds = $employeds->get();
-    //dd($employeds);
 
         return view('employed.index', compact('employeds'));
     }

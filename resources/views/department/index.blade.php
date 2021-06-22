@@ -20,6 +20,7 @@
                                 <a href="{{ route('departments.create') }}" class="btn float-right"  data-placement="left"><i class="fas fa-2x fa-plus-square"></i>
                                   
                                 </a>
+                                <button type="button" href="{{ route('departments.create') }}" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
                               </div>
                         </div>
                     </div>
@@ -51,6 +52,7 @@
                                             <td>
                                                 <form action="{{ route('departments.destroy',$department->id) }}" method="POST">
                                                     <a class="btn" href="{{ route('departments.show',$department->id) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    
                                                     <a class="btn btn-sm" href="{{ route('departments.edit',$department->id) }}"><i class="fa fa-fw fa-edit"></i></a>
                                                     @csrf
                                                     @method('DELETE')
@@ -67,5 +69,6 @@
                 {!! $departments->links() !!}
             </div>
         </div>
+        @include('department.modal')
     </div>
 @endsection

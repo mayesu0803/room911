@@ -65,7 +65,7 @@
 									<th>Last Name</th>
                                     <th>Last Access</th>
                                     <th>Total Access</th>
-                                    <th width="300px">Actions</th>
+                                    <th width="280">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>

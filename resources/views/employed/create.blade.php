@@ -5,10 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
-
-
-    
+    <section class="content container-fluid">    
         <div class="card card-default">
             <div class="card-header">
                 <span class="card-title">Create employees from file .csv</span>

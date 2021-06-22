@@ -29,6 +29,8 @@
                                 <a href="{{ route('employeds.create') }}" class="btn float-right"  data-placement="left"><i class="fas fa-2x fa-plus-square"></i>
                                   
                                 </a>
+                                <button type="button" href="{{ route('employeds.create') }}" class="btn btn-info btn-lg" data-toggle="modal" data-target="#mediumModal">Open Modal</button>
+
 
                             </div>
 
@@ -131,5 +133,4 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.1.0/js/dataTables.dateTime.min.js"></script>
     <script src="{{ asset('js/filtersEmployee.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/modal.js') }}"></script>
 @endsection

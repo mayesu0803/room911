@@ -38,7 +38,10 @@ class EmployedController extends Controller
             ->groupBy('employeds.id_employed','departments.name');
              $employeds = $employeds->get();
 
-        return view('employed.index', compact('employeds'));
+             $departments = Department::pluck('name', 'id');
+
+
+        return view('employed.index', compact('employeds', 'departments'));
     }
     
     

@@ -1,10 +1,4 @@
-@extends('layouts.app')
 
-@section('template_title')
-    Create Employed
-@endsection
-
-@section('content')
     <section class="content container-fluid">    
         <div class="card card-default">
             <div class="card-header">
@@ -56,5 +50,4 @@
         </div>
 
     </section>
-@endsection
 

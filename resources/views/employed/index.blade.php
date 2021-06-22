@@ -25,11 +25,8 @@
                             <div class="float-right">
                                 
                                 <a href="{{ route('export-pdf') }}" class="btn float-right"><i class="fas fa-2x fa-file-pdf"></i></a>
-
-                                <a href="{{ route('employeds.create') }}" class="btn float-right"  data-placement="left"><i class="fas fa-2x fa-plus-square"></i>
-                                  
-                                </a>
-                                <button type="button" href="{{ route('employeds.create') }}" class="btn btn-info btn-lg" data-toggle="modal" data-target="#mediumModal">Open Modal</button>
+                                
+                                <a class="btn float-right" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.create')}}"><i class="fas fa-2x fa-plus-square"></i></a>
 
 
                             </div>
@@ -81,9 +78,8 @@
                                         <td>{{ $employed->last_date }}</td>
                                         <td>{{ $employed->total_access }}</</td>
                                         <td>
+                                            <a class="btn" data-toggle="editModal" id="editButton" data-target="#editModal" data-attr="{{ route('employeds.edit',$employed->id)}}"><i class="fa fa-fw fa-lg fa-edit"></i></a>
                                         <form action="{{ route('employeds.destroy',$employed->id) }}" class="d-inline" method="POST">               
-
-                                            <a class="btn" href="{{ route('employeds.edit',$employed->id) }}"><i class="fa fa-fw fa-lg fa-edit"></i> </a>
 
                                             @if($employed->room_access)
                                             <a class="btn" onclick="return confirm('Do you disabled access room?')" href="{{ route('employeds.editroom', $employed->id)}}"><i class="fa fa-fw fa-lg fa-toggle-on"></i>  
@@ -92,12 +88,9 @@
                                             <a class="btn" onclick="return confirm('Do you enable access room?')" href="{{ route('employeds.editroom', $employed->id)}}"> 
                                             <i class="fa fa-fw fa-lg fa-toggle-off"></i></a>
                                             @endif
-                                            
                                             <a class="btn" href="{{ route('employeds.show',$employed->id) }}"><i class="fa fa-fw fa-lg fa-eye"></i></a>
-                                        
                                             @csrf
                                             @method('DELETE')
-                                            
                                             <button type="submit" onclick="return confirm('Do you want delete?')" class="btn"><i class="fa fa-fw fa-lg fa-trash"></i></button>
 
                                         </form>
@@ -122,6 +115,7 @@
                 </div>
                 </div>
                 @include('employed.modal')
+                @include('employed.editModal')
             </div>
             
         </div>
@@ -133,4 +127,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.1.0/js/dataTables.dateTime.min.js"></script>
     <script src="{{ asset('js/filtersEmployee.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/modal.js') }}"></script>
+    <script src="{{ asset('js/modalEdit.js') }}"></script>
 @endsection

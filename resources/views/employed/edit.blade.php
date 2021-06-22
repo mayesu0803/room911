@@ -1,10 +1,3 @@
-@extends('layouts.app')
-
-@section('template_title')
-    Update Employed
-@endsection
-
-@section('content')
     <section class="content container-fluid">
         <div class="">
             <div class="col-md-12">
@@ -21,11 +14,6 @@
                             @csrf
 
                             @include('employed.form')
-                            @if($errors->all())
-                              <script type="text/javascript">
-                                  $('#myModal').modal("show");
-                              </script>
-                              @endif
 
                         </form>
                     </div>
@@ -33,5 +21,4 @@
             </div>
         </div>
     </section>
-@endsection
 

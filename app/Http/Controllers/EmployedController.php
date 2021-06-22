@@ -64,8 +64,12 @@ class EmployedController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $campos=[
+            'id_employed'=>'unique:employeds'
+        ];
+        $this->validate($request, $campos);
         request()->validate(Employed::$rules);
+
 
         $employed = Employed::create($request->all());
 

@@ -3,9 +3,13 @@
         
         <div class="form-group">
             {{ Form::label('id_employed') }}
+        @if($mode=='Create')
             {{ Form::text('id_employed', $employed->id_employed, ['class' => 'form-control' . ($errors->has('id_employed') ? ' is-invalid' : ''), 'placeholder' => 'Id Employed']) }}
             {!! $errors->first('id_employed', '<div class="invalid-feedback">:message</p>') !!}
+        @else
+            {{ Form::text('id_employed', $employed->id_employed, ['readonly', 'class' => 'form-control']) }}
         </div>
+        @endif
         <div class="form-group">
             {{ Form::label('first_name') }}
             {{ Form::text('first_name', $employed->first_name, ['class' => 'form-control' . ($errors->has('first_name') ? ' is-invalid' : ''), 'placeholder' => 'First Name']) }}
@@ -35,6 +39,6 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">{{$mode}}</button>
     </div>
 </div>

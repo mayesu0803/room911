@@ -41,7 +41,7 @@
                         <form method="POST" action="{{ route('employeds.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('employed.form')
+                            @include('employed.form',['mode' => 'Create'])
 
                         </form>
                     </div>

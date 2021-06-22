@@ -13,7 +13,8 @@
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('employed.form')
+                            @include('employed.form',['mode' => 'Edit'])
+
 
                         </form>
                     </div>

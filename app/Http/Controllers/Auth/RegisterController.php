@@ -75,7 +75,7 @@ class RegisterController extends Controller
 
         $users = User::count();
         if($users){
-            //dd(auth()->id());
+            
             $user = User::find(auth()->id());
             User::create([
                 'name' => $data['name'],

@@ -169,13 +169,11 @@ class EmployedController extends Controller
         ];
         $messages = ['id_employed.unique' => 'hola'];
         $imports= Excel::toArray(new EmployedsImport, $request->file('file')->store('temp'));
-        for ($i=0; $i < $imports; $i++) { 
-            # code...
-        }
+        $validator = Validator::make($imports[0], $rules, $messages);
         foreach ($imports as $insert) {
 
-            dd($insert->first()); //problema no está recorriendo el arreglo
-            $validator = Validator::make($insert ,  $this->$rules);
+            dd($insert[0]); //problema no está recorriendo el arreglo
+            $validator = Validator::make($insert[0] ,  $rules);
             dd($validator->errors());
 
         }

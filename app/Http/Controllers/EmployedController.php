@@ -163,30 +163,10 @@ class EmployedController extends Controller
             'file'=>'required|mimes:csv'
         ];
         
-        $this->validate($request, $campos);
-        $rules = [
-        'id_employed' => 'unique:employeds',
-        ];
-        $messages = ['id_employed.unique' => 'hola'];
-        $imports= Excel::toArray(new EmployedsImport, $request->file('file')->store('temp'));
-        $validator = Validator::make($imports[0], $rules, $messages);
-        foreach ($imports as $insert) {
-
-            dd($insert[0]); //problema no está recorriendo el arreglo
-            $validator = Validator::make($insert[0] ,  $rules);
-            dd($validator->errors());
-
-        }
-        //$validator = Validator::make($prueba, $rules, $messages);
-        dd($validator->errors());
-        if ($validator->fails()){
-            dd($prueba);
-            return redirect()->route('employed.create')->withErrors($validator);
-        }
-        
+        $this->validate($request, $campos);       
         
         Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
-        request()->validate(EmployedsImport::$rules);
+     
         return redirect()->route('employeds.index')
         ->with('success', 'Employeds created successfully.');
 

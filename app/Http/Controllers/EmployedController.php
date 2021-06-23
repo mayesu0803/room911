@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Employed;
 use App\Models\Record;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;

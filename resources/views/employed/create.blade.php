@@ -17,6 +17,7 @@
 
             <div class="alert alert-danger" role="alert" >
                 <ul>
+                        <li>{{$errors->all()}}</li>
                         <li>{{$errors->first('file')}}</li>
                    
                 </ul>

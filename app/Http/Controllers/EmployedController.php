@@ -164,7 +164,23 @@ class EmployedController extends Controller
         ];
         
         $this->validate($request, $campos);
-        $rules = [
+
+
+        $file = $request->file('file')->store('temp');
+        $import = new EmployedsImport;
+        dd($import);
+        $import->import($file);
+        $imports= Excel::toArray(new EmployedsImport, $request->file('file')->store('temp'));
+        //dd($imports);
+        if ($imports[0]->failures()->isNotEmpty()) {
+            return back()->withFailures($import->failures());
+        }
+        return redirect()->route('employeds.index')
+        ->with('success', 'Employeds created successfully.');
+
+        //request()->validate(EmployedsImport::$rules);   
+
+        /*$rules = [
         'id_employed' => 'unique:employeds',
         ];
         $messages = ['id_employed.unique' => 'hola'];
@@ -182,14 +198,28 @@ class EmployedController extends Controller
         if ($validator->fails()){
             dd($prueba);
             return redirect()->route('employed.create')->withErrors($validator);
-        }
-        
-        
+        }*/
+        /*try {
         Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
-        request()->validate(EmployedsImport::$rules);
+
         return redirect()->route('employeds.index')
         ->with('success', 'Employeds created successfully.');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+             $failures = $e->failures();
+             dd($failures);
+             foreach ($failures as $failure) {
+                 $failure->row(); // row that went wrong
+                 $failure->attribute(); // either heading key (if using heading row concern) or column index
+                 $failure->errors(); // Actual error messages from Laravel validator
+                 $failure->values(); // The values of the row that has failed.
 
+
+             }
+             //return redirect()->route('employed.create')->withErrors($validator)
+             return redirect()->route('employeds.create')->with('error', 'Lêer nie gevind nie');
+             //return back()->withErrors();
+            }*/
+    
     }
 
     public function downloadPdf()

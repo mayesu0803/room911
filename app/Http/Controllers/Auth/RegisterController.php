@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -39,7 +39,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {       
-        $users = DB::table('users')->count();
+        $users = User::count();
         
         if($users){
             $this->middleware('auth');
@@ -73,15 +73,23 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        /*$users = DB::table('users')->count();
+        $users = User::count();
         if($users){
-            
-            return redirect()->route('employeds.index');
-        }*/
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+            //dd(auth()->id());
+            $user = User::find(auth()->id());
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+
+            return $user;
+        }else{
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
     }
 }

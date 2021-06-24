@@ -3,36 +3,24 @@
 namespace App\Imports;
 
 use App\Models\Employed;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Illuminate\Validation\Rule;
-use Maatwebsite\Excel\Concerns\WithValidation;
-
-
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Maatwebsite\Excel\Concerns\Importable;
-use Maatwebsite\Excel\Concerns\RegistersEventListeners;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
-use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
-use Maatwebsite\Excel\Concerns\WithEvents;
-use Maatwebsite\Excel\Events\AfterImport;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Validators\Failure;
 use Throwable;
 
-class EmployedsImport implements ToModel, WithValidation, WithHeadingRow,
-    SkipsOnError,
-    SkipsOnFailure,
-    WithChunkReading,
-    ShouldQueue,
-    WithEvents
-{
 
-    use Importable, SkipsErrors, SkipsFailures, RegistersEventListeners;
+class EmployedsImport implements ToModel, SkipsOnError, 
+    WithHeadingRow,
+    WithValidation, 
+    SkipsOnFailure
+{
+    use Importable, SkipsErrors, SkipsFailures;
     /**
     * @param array $row
     *
@@ -57,29 +45,13 @@ class EmployedsImport implements ToModel, WithValidation, WithHeadingRow,
     public function rules(): array
     {
         return [
-            'id_employed' => 'required|unique:employeds|numeric',
+            'id_employed' => 'required|numeric|unique:employeds',
             'first_name' => 'required',
             'middle_name' => 'required',
             'last_name' => 'required',
             'room_access'   => 'boolean',
             'id_department'  => 'numeric',
-
-            
         ];
-    }
-
-    public function chunkSize(): int
-    {
-        return 1000;
-    }
-
-    public static function afterImport(AfterImport $event)
-    {
-    }
-
-    public function onFailure(Failure ...$failure)
-    {
-        
-    }
+    } 
     
 }

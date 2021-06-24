@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;
+use Maatwebsite\Excel\Validators\ValidationException;
 use Illuminate\Support\Carbon;
-use PDF;
 use Illuminate\Support\Facades\DB;
+use PDF;
 use DataTables;
 
 /**
@@ -40,7 +41,6 @@ class EmployedController extends Controller
 
         return view('employed.index', compact('employeds'));
     }
-    
     
     /**
      * Show the form for creating a new resource.
@@ -162,9 +162,15 @@ class EmployedController extends Controller
             'file'=>'required|mimes:csv'
         ];
         
-        $this->validate($request, $campos);       
-        
-        Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
+        $this->validate($request, $campos);
+
+        $file = $request->file('file')->store('temp');
+        $imports= new EmployedsImport();
+
+        $imports->import($file);
+        if ($imports->failures()->isNotEmpty()) {
+            return back()->withFailures($imports->failures());
+        }
      
         return redirect()->route('employeds.index')
         ->with('success', 'Employeds created successfully.');

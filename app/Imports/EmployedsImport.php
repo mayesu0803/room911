@@ -56,7 +56,13 @@ class EmployedsImport implements ToModel, WithValidation, WithHeadingRow,
     public function rules(): array
     {
         return [
-            'id_employed' => 'required|unique:employeds',
+            'id_employed' => 'required|unique:employeds|numeric',
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+            'room_access'   => 'boolean',
+            'id_department'  => 'numeric',
+
             
         ];
     }
@@ -72,27 +78,7 @@ class EmployedsImport implements ToModel, WithValidation, WithHeadingRow,
 
     public function onFailure(Failure ...$failure)
     {
+        
     }
-
-
-    /*public function rules(): array
-    {
-        return [
-            'id_employed' => Rule::in(['unique:employeds']),
-
-             // Above is alias for as it always validates in batches
-             //'*.1' => Rule::in(['patrick@maatwebsite.nl']),
-             
-             // Can also use callback validation rules
-             /*'1' => function($attribute, $value, $onFailure) {
-                  if ($value !== 'Patrick Brouwers') {
-                       $onFailure('Name is not Patrick Brouwers');
-                  }
-              }
-        ];
-    }*/
-
-
-
     
 }

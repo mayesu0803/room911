@@ -165,19 +165,27 @@ class EmployedController extends Controller
         
         $this->validate($request, $campos);
 
+        //try {
+            Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
+            //dd($imports);
 
-        $file = $request->file('file')->store('temp');
-        $import = new EmployedsImport;
-        dd($import);
-        $import->import($file);
-        $imports= Excel::toArray(new EmployedsImport, $request->file('file')->store('temp'));
-        //dd($imports);
-        if ($imports[0]->failures()->isNotEmpty()) {
-            return back()->withFailures($import->failures());
-        }
         return redirect()->route('employeds.index')
         ->with('success', 'Employeds created successfully.');
-
+        /*} catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+             $failures = $e->failures();
+             dd($failures);
+             foreach ($failures as $failure) {
+                 $failure->row(); // row that went wrong
+                 $failure->attribute(); // either heading key (if using heading row concern) or column index
+                 $failure->errors(); // Actual error messages from Laravel validator
+                 $failure->values(); // The values of the row that has failed.
+             }
+            
+        }*/
+        //dd($imports);
+        /*if ($imports->failures()->isNotEmpty()) {
+            return back()->withFailures($import->failures());
+        }*/
         //request()->validate(EmployedsImport::$rules);   
 
         /*$rules = [

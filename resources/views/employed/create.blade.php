@@ -35,6 +35,11 @@
                 </div>
                 
             </form>
+            
+    <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                <label class="custom-file-label" for="chooseFile">Choose file</label>
+            </div>
         </div>
 
         <div class="row">
@@ -60,4 +65,6 @@
 
     </section>
 @endsection
-
+@section('javascripts')
+    <script src="{{ asset('js/uploadfile.js') }}"></script>
+@endsection

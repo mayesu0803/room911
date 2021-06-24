@@ -168,7 +168,7 @@ class EmployedController extends Controller
      
         return redirect()->route('employeds.index')
         ->with('success', 'Employeds created successfully.');
-
+    
     }
 
     public function downloadPdf()

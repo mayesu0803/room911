@@ -79,7 +79,8 @@
                                         <td>{{ $employed->last_date }}</td>
                                         <td>{{ $employed->total_access }}</</td>
                                         <td>
-                                        <form action="{{ route('employeds.destroy',$employed->id) }}" class="d-inline" method="POST">               
+                                        <form action="{{ route('employeds.destroy',$employed->id) }}" class="d-inline" method="POST">
+                                            <a class="btn" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.edit',$employed->id)}}"><i class="fa fa-fw fa-lg fa-edit"></i></a>               
 
                                             <a class="btn" href="{{ route('employeds.edit',$employed->id) }}"><i class="fa fa-fw fa-lg fa-edit"></i> </a>
 

@@ -1,7 +1,6 @@
 $(document).on('click', '#mediumButton', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
-            console.log(href);
             $.ajax({
                 url: href,
                 beforeSend: function() {

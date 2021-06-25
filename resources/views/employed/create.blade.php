@@ -1,14 +1,5 @@
-@extends('layouts.app')
 
-@section('template_title')
-    Create Employed
-@endsection
-
-@section('content')
     <section class="content container-fluid">
-
-
-    
         <div class="card card-default">
             <div class="card-header">
                 <span class="card-title">Create employees from file .csv</span>
@@ -60,7 +51,7 @@
             @csrf
                 <div class="card-body" >
                     <div class="custom-file text-left">
-                        <input type="file" name="file" class="custom-file-input" id="file">
+                        <input type="file" name="file" class="custom-file-input" id="file" required>
                         <label class="custom-file-label" for="file">Choose file</label>
                     </div>
                     <button class="btn btn-primary">Import data</button>
@@ -92,7 +83,6 @@
         </div>
 
     </section>
-@endsection
 @section('javascripts')
     <script src="{{ asset('js/uploadfile.js') }}"></script>
 @endsection

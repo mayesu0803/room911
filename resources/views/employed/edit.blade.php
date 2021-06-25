@@ -14,12 +14,7 @@
                             @csrf
 
                             @include('employed.form',['mode' => 'Edit'])
-                            @if($errors->all())
-                                              <script type="text/javascript">
-                                                  $('#mediumModal').modal("show");
-                                              </script>
-                                              @endif
-
+                           
                         </form>
                     </div>
                 </div>

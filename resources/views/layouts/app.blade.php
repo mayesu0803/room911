@@ -43,6 +43,9 @@
                         
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('auth.index') }}">{{ __('Users') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('departments.index') }}">{{ __('Departments') }}</a>
                         </li>
                         

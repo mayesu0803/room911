@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployedController;
 use App\Http\Controllers\RecordController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,9 @@ Route::resource('employeds', App\Http\Controllers\EmployedController::class)->mi
 Route::resource('departments', App\Http\Controllers\DepartmentController::class)->middleware('auth');
 Route::resource('records', App\Http\Controllers\RecordController::class)->middleware('auth');
 
-
+Route::get('users', [RegisterController::class, 'index'])->name('auth.index');
 Route::get('editroom/{id}', [EmployedController::class, 'editroom'])->name('employeds.editroom');
+Route::get('import', [EmployedController::class, 'import'])->name('employeds.import');
 Route::post('file-import', [EmployedController::class, 'fileImport'])->name('file-import');
 Route::get('export-pdf', [EmployedController::class, 'downloadPdf'])->name('export-pdf');
 Route::get('export-pdf/{id}', [EmployedController::class, 'downloadPdfRecords'])->name('export-pdf-records');

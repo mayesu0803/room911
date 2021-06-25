@@ -68,7 +68,6 @@ class EmployedController extends Controller
         $this->validate($request, $campos);
         request()->validate(Employed::$rules);
 
-
         $employed = Employed::create($request->all());
 
         return redirect()->route('employeds.index')
@@ -153,6 +152,11 @@ class EmployedController extends Controller
         
         return redirect()->route('employeds.index')
             ->with('success', 'Employed deleted successfully');
+    }
+
+    public function import()
+    {
+        return view('employed.import');
     }
 
     public function fileImport(Request $request) 

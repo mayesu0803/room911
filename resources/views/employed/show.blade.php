@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
-                        <span class="card-title">Show Employed</span>
+                        <span class="card-title">Show Employee</span>
                     </div>
                     <div class="float-right">
                         <a href="{{ route('export-pdf-records', $employed->id_employed) }}" class="btn"> <i class="fas fa-2x fa-file-pdf"></i></a>
@@ -27,7 +27,7 @@
                 <div class="card-body">
                     
                     <div class="form-group">
-                        <strong>Id Employed:</strong>
+                        <strong>Id Employee:</strong>
                         {{ $employed->id_employed }}
                     </div>
                     <div class="form-group">

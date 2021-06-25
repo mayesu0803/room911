@@ -2,9 +2,9 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('id_employed') }}
+            {{ Form::label('Id Employee') }}
         @if($mode=='Create')
-            {{ Form::number('id_employed', $employed->id_employed, ['min' =>1,'required' => 'required','class' => 'form-control' . ($errors->has('id_employed') ? ' is-invalid' : ''), 'placeholder' => 'Id Employed']) }}
+            {{ Form::number('id_employed', $employed->id_employed, ['min' =>1,'required' => 'required','class' => 'form-control' . ($errors->has('id_employed') ? ' is-invalid' : ''), 'placeholder' => 'Id Employee']) }}
             {!! $errors->first('id_employed', '<div class="invalid-feedback">:message</p>') !!}
         @else
             {{ Form::number('id_employed', $employed->id_employed, ['readonly', 'class' => 'form-control']) }}

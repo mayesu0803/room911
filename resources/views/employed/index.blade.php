@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Employed
+    Employee
 @endsection
 @section('styles')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
@@ -58,7 +58,7 @@
                             <thead class="thead">
                                 <tr>
                                     
-									<th>Employed</th>
+									<th>Employee</th>
                                     <th>Department</th>
 									<th>First Name</th>
 									<th>Middle Name</th>

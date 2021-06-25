@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Import Employed
+    Import Employee
 @endsection
 
 @section('content')

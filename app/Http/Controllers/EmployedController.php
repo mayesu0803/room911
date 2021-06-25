@@ -37,9 +37,8 @@ class EmployedController extends Controller
             ->whereNull('date_deleted')
             ->groupBy('employeds.id_employed','departments.name');
              $employeds = $employeds->get();
-             $departments = Department::pluck('name', 'id');
 
-        return view('employed.index', compact('employeds', 'departments'));
+        return view('employed.index', compact('employeds'));
     }
     
     /**

@@ -4,7 +4,7 @@
         <div class="form-group">
             {{ Form::label('id_employed') }}
         @if($mode=='Create')
-            {{ Form::number('id_employed', $employed->id_employed, ['required' => 'required','class' => 'form-control' . ($errors->has('id_employed') ? ' is-invalid' : ''), 'placeholder' => 'Id Employed']) }}
+            {{ Form::number('id_employed', $employed->id_employed, ['min' =>1,'required' => 'required','class' => 'form-control' . ($errors->has('id_employed') ? ' is-invalid' : ''), 'placeholder' => 'Id Employed']) }}
             {!! $errors->first('id_employed', '<div class="invalid-feedback">:message</p>') !!}
         @else
             {{ Form::number('id_employed', $employed->id_employed, ['readonly', 'class' => 'form-control']) }}

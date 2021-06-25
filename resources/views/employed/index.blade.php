@@ -26,7 +26,7 @@
                                 
                                 <a href="{{ route('export-pdf') }}" class="btn float-right"><i class="fas fa-2x fa-file-pdf"></i></a>
 
-                                <a class="btn" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.create')}}"><i class="fa fa-fw fa-2x fa-plus-square"></i></a> 
+                                <a class="btn float-right" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.create')}}"><i class="fa fa-fw fa-2x fa-plus-square"></i></a> 
 
                             </div>
 

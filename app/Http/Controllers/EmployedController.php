@@ -37,7 +37,6 @@ class EmployedController extends Controller
             ->whereNull('date_deleted')
             ->groupBy('employeds.id_employed','departments.name');
              $employeds = $employeds->get();
-    //dd($employeds);
 
         return view('employed.index', compact('employeds'));
     }
@@ -68,7 +67,6 @@ class EmployedController extends Controller
         ];
         $this->validate($request, $campos);
         request()->validate(Employed::$rules);
-
 
         $employed = Employed::create($request->all());
 
@@ -154,6 +152,11 @@ class EmployedController extends Controller
         
         return redirect()->route('employeds.index')
             ->with('success', 'Employed deleted successfully');
+    }
+
+    public function import()
+    {
+        return view('employed.import');
     }
 
     public function fileImport(Request $request) 

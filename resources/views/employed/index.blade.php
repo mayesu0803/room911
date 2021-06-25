@@ -26,9 +26,9 @@
                                 
                                 <a href="{{ route('export-pdf') }}" class="btn float-right"><i class="fas fa-2x fa-file-pdf"></i></a>
 
-                                <a href="{{ route('employeds.create') }}" class="btn float-right"  data-placement="left"><i class="fas fa-2x fa-plus-square"></i>
-                                  
-                                </a>
+                                <a href="{{ route('employeds.import') }}" class="btn float-right"><i class="fas fa-2x fa-file-csv"></i></a>
+
+                                <a class="btn float-right" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.create')}}"><i class="fa fa-fw fa-2x fa-plus-square"></i></a> 
 
                             </div>
 
@@ -79,9 +79,8 @@
                                         <td>{{ $employed->last_date }}</td>
                                         <td>{{ $employed->total_access }}</</td>
                                         <td>
-                                        <form action="{{ route('employeds.destroy',$employed->id) }}" class="d-inline" method="POST">               
-
-                                            <a class="btn" href="{{ route('employeds.edit',$employed->id) }}"><i class="fa fa-fw fa-lg fa-edit"></i> </a>
+                                        <form action="{{ route('employeds.destroy',$employed->id) }}" class="d-inline" method="POST">
+                                            <a class="btn" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.edit',$employed->id)}}"><i class="fa fa-fw fa-lg fa-edit"></i></a>               
 
                                             @if($employed->room_access)
                                             <a class="btn" onclick="return confirm('Do you disabled access room?')" href="{{ route('employeds.editroom', $employed->id)}}"><i class="fa fa-fw fa-lg fa-toggle-on"></i>  

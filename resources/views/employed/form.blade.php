@@ -4,15 +4,15 @@
         <div class="form-group">
             {{ Form::label('id_employed') }}
         @if($mode=='Create')
-            {{ Form::text('id_employed', $employed->id_employed, ['class' => 'form-control' . ($errors->has('id_employed') ? ' is-invalid' : ''), 'placeholder' => 'Id Employed']) }}
+            {{ Form::number('id_employed', $employed->id_employed, ['min' =>1,'required' => 'required','class' => 'form-control' . ($errors->has('id_employed') ? ' is-invalid' : ''), 'placeholder' => 'Id Employed']) }}
             {!! $errors->first('id_employed', '<div class="invalid-feedback">:message</p>') !!}
         @else
-            {{ Form::text('id_employed', $employed->id_employed, ['readonly', 'class' => 'form-control']) }}
+            {{ Form::number('id_employed', $employed->id_employed, ['readonly', 'class' => 'form-control']) }}
         </div>
         @endif
         <div class="form-group">
             {{ Form::label('first_name') }}
-            {{ Form::text('first_name', $employed->first_name, ['class' => 'form-control' . ($errors->has('first_name') ? ' is-invalid' : ''), 'placeholder' => 'First Name']) }}
+            {{ Form::text('first_name', $employed->first_name, ['required' => 'required','class' => 'form-control' . ($errors->has('first_name') ? ' is-invalid' : ''), 'placeholder' => 'First Name']) }}
             {!! $errors->first('first_name', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('last_name') }}
-            {{ Form::text('last_name', $employed->last_name, ['class' => 'form-control' . ($errors->has('last_name') ? ' is-invalid' : ''), 'placeholder' => 'Last Name']) }}
+            {{ Form::text('last_name', $employed->last_name, ['required' => 'required','class' => 'form-control' . ($errors->has('last_name') ? ' is-invalid' : ''), 'placeholder' => 'Last Name']) }}
             {!! $errors->first('last_name', '<div class="invalid-feedback">:message</p>') !!}
         </div>
        
@@ -34,7 +34,7 @@
       
         <div class="form-group">
             {{ Form::label('Department') }}
-            {!! Form::select('id_department', $departments, $employed->id_department, ['class' => 'form-control']) !!}
+            {!! Form::select('id_department', $departments, $employed->id_department, ['required' => 'required','class' => 'form-control']) !!}
         </div>
 
     </div>

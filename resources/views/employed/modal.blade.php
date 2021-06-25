@@ -8,10 +8,9 @@
                     </button>
                 </div>
                 <div class="modal-body" id="mediumBody">
-                    <div>
-                  
-                    </div>
+                    <div></div>
                 </div>
+
             </div>
         </div>
     </div>

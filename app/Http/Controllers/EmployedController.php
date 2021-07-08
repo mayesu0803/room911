@@ -162,7 +162,7 @@ class EmployedController extends Controller
     public function fileImport(Request $request) 
     {
         $campos=[
-            'file'=>'required|mimes:csv'
+            'file'=>'required|mimes:csv,xlsx'
         ];
         
         $this->validate($request, $campos);

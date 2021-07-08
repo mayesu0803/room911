@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Employed;
 use App\Models\Record;
 use Illuminate\Http\Request;
-use Illuminate\Validator;
 use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;
+use Maatwebsite\Excel\Validators\ValidationException;
 use Illuminate\Support\Carbon;
-use PDF;
 use Illuminate\Support\Facades\DB;
+use PDF;
 use DataTables;
 
 /**
@@ -44,7 +44,6 @@ class EmployedController extends Controller
         return view('employed.index', compact('employeds', 'departments'));
     }
     
-    
     /**
      * Show the form for creating a new resource.
      *
@@ -71,7 +70,6 @@ class EmployedController extends Controller
         ];
         $this->validate($request, $campos);
         request()->validate(Employed::$rules);
-
 
         $employed = Employed::create($request->all());
 
@@ -159,18 +157,30 @@ class EmployedController extends Controller
             ->with('success', 'Employed deleted successfully');
     }
 
+    public function import()
+    {
+        return view('employed.import');
+    }
+
     public function fileImport(Request $request) 
     {
         $campos=[
-            'file'=>'required|mimes:csv'
+            'file'=>'required|mimes:csv,xlsx'
         ];
         
         $this->validate($request, $campos);
-        
-        Excel::import(new EmployedsImport, $request->file('file')->store('temp'));
+
+        $file = $request->file('file')->store('temp');
+        $imports= new EmployedsImport();
+
+        $imports->import($file);
+        if ($imports->failures()->isNotEmpty()) {
+            return back()->withFailures($imports->failures());
+        }
+     
         return redirect()->route('employeds.index')
         ->with('success', 'Employeds created successfully.');
-
+    
     }
 
     public function downloadPdf()

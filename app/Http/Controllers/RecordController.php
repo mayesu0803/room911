@@ -52,21 +52,25 @@ class RecordController extends Controller
         $record->date = Carbon::now();
 
         $employed=Employed::where('id_employed', $request->all()['id_employed'])->get()->first();
-
+        $response = "";
         if ($employed){
             
             if($employed->room_access){
 
                 $record->success = true;
                 $record->message = "Employee have access";
+                $response = "success";
+
             }
             else{
                 if($employed->date_deleted){
 
                     $record->message = "Employee deleted";
+                    $response = "error";
 
                 }else{
                     $record->message = "Employee don't have access now";
+                    $response = "error";
                 }
 
                 $record->success = false;
@@ -79,6 +83,7 @@ class RecordController extends Controller
 
             $record->success = false;
             $record->message = "Employee don't exist yet";
+            $response = "error";
             $record->id_employed = $request->all()['id_employed'];
 
         }
@@ -86,7 +91,7 @@ class RecordController extends Controller
         $record->save();
 
         return redirect()->route('records.index')
-            ->with('success', 'Record created successfully.');
+            ->with($response, $record->message);
     }
 
     

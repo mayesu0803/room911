@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -37,8 +38,22 @@ class RegisterController extends Controller
      * @return void
      */
     public function __construct()
-    {
-        $this->middleware('guest');
+    {       
+        $users = User::count();
+        
+        if($users){
+            $this->middleware('auth');
+        }else{
+            $this->middleware('guest');
+        }
+        
+    }
+    public function index(){
+
+        $users = User::paginate(5);
+        return view('auth.index', compact('users'))
+            ->with('i', (request()->input('page', 1) - 1) * $users->perPage());
+
     }
 
     /**
@@ -64,10 +79,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        $users = User::count();
+        if($users){
+            
+            $user = User::find(auth()->id());
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+
+        }else{
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
     }
 }

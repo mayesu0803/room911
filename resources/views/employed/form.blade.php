@@ -40,5 +40,6 @@
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">{{$mode}}</button>
+        <a class="btn btn-primary" href="{{'/employeds'}}">Home</a>
     </div>
 </div>

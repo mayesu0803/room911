@@ -47,10 +47,9 @@ class EmployedsImport implements ToModel, SkipsOnError,
         return [
             'id_employed' => 'required|numeric|unique:employeds',
             'first_name' => 'required',
-            'middle_name' => 'required',
             'last_name' => 'required',
             'room_access'   => 'boolean',
-            'id_department'  => 'numeric',
+            'id_department'  => 'required|numeric',
         ];
     } 
     

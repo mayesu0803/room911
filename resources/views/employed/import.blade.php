@@ -9,6 +9,9 @@
         <div class="card card-default">
             <div class="card-header">
                 <span class="card-title">Create employees from file .csv</span>
+                <div class="float-right">
+                            <a class="btn" href="{{ route('employeds.index') }}"> <i class="fas fa-2x fa-home"></i></a>
+                        </div>
             </div>
             
             @if (session()->has('failures'))

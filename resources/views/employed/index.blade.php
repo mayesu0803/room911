@@ -28,7 +28,7 @@
 
                                 <a href="{{ route('employeds.import') }}" class="btn float-right"><i class="fas fa-2x fa-file-csv"></i></a>
 
-                                <a class="btn float-right" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.create')}}"><i class="fa fa-fw fa-2x fa-plus-square"></i></a> 
+                                <a class="btn float-right" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.create')}}"><i class="fa fa-fw fa-2x fa-user-plus"></i></a> 
 
                             </div>
 
@@ -36,7 +36,11 @@
                     </div>
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" arial-label="Close">
+                                <span aria-hidden="true"> &times;</span>
+                            </button>
                             <p>{{ $message }}</p>
+
                         </div>
                     @endif
 
@@ -54,7 +58,7 @@
                             </div> 
 
                     <div class="table-responsive">
-                        <table id="datatable" class="table table-striped table-hover">
+                        <table id="datatable" class="table table-striped table-hover" >
                             <thead class="thead">
                                 <tr>
                                     
@@ -65,7 +69,7 @@
 									<th>Last Name</th>
                                     <th>Last Access</th>
                                     <th>Total Access</th>
-                                    <th width="300px">Actions</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,7 +82,7 @@
 										<td>{{ $employed->last_name }}</td>
                                         <td>{{ $employed->last_date }}</td>
                                         <td>{{ $employed->total_access }}</</td>
-                                        <td>
+                                        <td align="center">
                                         <form action="{{ route('employeds.destroy',$employed->id) }}" class="d-inline" method="POST">
                                             <a class="btn" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.edit',$employed->id)}}"><i class="fa fa-fw fa-lg fa-edit"></i></a>               
 

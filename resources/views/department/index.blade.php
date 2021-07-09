@@ -69,6 +69,5 @@
                 {!! $departments->links() !!}
             </div>
         </div>
-        @include('department.modal')
     </div>
 @endsection

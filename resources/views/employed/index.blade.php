@@ -120,7 +120,6 @@
                 </div>
                 </div>
                 @include('employed.modal')
-                @include('employed.editModal')
             </div>
             
         </div>

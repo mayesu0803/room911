@@ -27,7 +27,17 @@ class EmployedController extends Controller
      */
     public function index()
     {
-        $employeds = DB::select('call all_employees()');
+        $employeds = DB::table('employeds')
+            ->leftJoin('records', 'employeds.id_employed', '=', 'records.id_employed')
+            ->Join('departments', 'employeds.id_department', '=', 'departments.id')
+            ->select('employeds.*',
+                    'departments.name',
+                    DB::raw('MAX(records.date) as last_date'), 
+                    DB::raw('count(records.id_employed) as total_access'))
+            ->whereNull('date_deleted')
+            ->groupBy('employeds.id_employed','departments.name')
+            ->get();
+        /*$employeds = DB::select('call all_employees()');*/
 
         return view('employed.index', compact('employeds'));
     }

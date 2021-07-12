@@ -6,24 +6,40 @@ var minDate, maxDate;
             var min = minDate.val();
             var max = maxDate.val();
             var date = new Date( data[5] );
+            console.log(date);
      
             if (
                 ( min === null && max === null ) ||
+                ( min <= date  && max === null ) ||
                 ( min === null && date <= max ) ||
-                ( min <= date   && max === null ) ||
-                ( min <= date   && date <= max )
+                ( min <= date  && date <= max )
             ) {
+               console.log(( min <= date   && date <= max ));
                 return true;
             }
             return false;
         }
     );
+    $(document).ready(function() {
+    new DateTime(document.getElementById('test'), {
+        buttons: {
+            today: true,
+            clear: true
+        }
+    });
+});
     $(document).ready(function () {
       
       minDate = new DateTime($('#min'), {
+            buttons: {
+            clear: true
+        },
             format: 'MMMM Do YYYY'
         });
-        maxDate = new DateTime($('#max'), {
+      maxDate = new DateTime($('#max'), {
+        buttons: {
+            clear: true
+        },
             format: 'MMMM Do YYYY'
         });
      

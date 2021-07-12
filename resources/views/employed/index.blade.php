@@ -47,12 +47,12 @@
                     <div class="card-body">
                         <div class="input-group">
                                 <div class="form-group">
-                                    <strong>From:</strong>
-                                    <input type="text" id="min" name="min">
+                                    <strong> From:</strong>
+                                    <input type="text" class="datetime" id="min" name="min" >
                                 </div>
                                 <div class="form-group">
                                     <strong> To:</strong>
-                                    <input type="text" id="max" name="max">
+                                    <input type="text" readonly id="max" name="max" placeholder="To">
                                 </div>
                                 
                             </div> 
@@ -132,5 +132,4 @@
     <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.1.0/js/dataTables.dateTime.min.js"></script>
     <script src="{{ asset('js/filtersEmployee.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/modal.js') }}"></script>
-    <script src="{{ asset('js/modalEdit.js') }}"></script>
 @endsection

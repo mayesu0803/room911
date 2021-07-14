@@ -20,12 +20,14 @@
                                 <a href="{{ route('departments.create') }}" class="btn float-right"  data-placement="left"><i class="fas fa-2x fa-plus-square"></i>
                                   
                                 </a>
-                                <button type="button" href="{{ route('departments.create') }}" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
                               </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" arial-label="Close">
+                                <span aria-hidden="true"> &times;</span>
+                            </button>
                             <p>{{ $message }}</p>
                         </div>
                     @endif

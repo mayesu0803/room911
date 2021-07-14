@@ -12,7 +12,7 @@ var minDate, maxDate;
                 ( min === null && max === null ) ||
                 ( min <= date  && max === null ) ||
                 ( min === null && date <= max ) ||
-                ( min <= date  && date <= max )
+                ( min <= date  && max >= date)
             ) {
                console.log(( min <= date   && date <= max ));
                 return true;
@@ -23,7 +23,6 @@ var minDate, maxDate;
     $(document).ready(function() {
     new DateTime(document.getElementById('test'), {
         buttons: {
-            today: true,
             clear: true
         }
     });

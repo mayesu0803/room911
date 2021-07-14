@@ -26,7 +26,7 @@
                                 
                                 <a href="{{ route('export-pdf') }}" class="btn float-right"><i class="fas fa-2x fa-file-pdf"></i></a>
                                 
-                                <a class="btn float-right" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.create')}}"><i class="fas fa-2x fa-plus-square"></i></a>
+                                <a class="btn float-right" data-toggle="modal" id="mediumButton" data-target="#mediumModal" data-attr="{{ route('employeds.create')}}"><i class="fas fa-2x fa-user-plus"></i></a>
 
                                 <a href="{{ route('employeds.import') }}" class="btn float-right"><i class="fas fa-2x fa-file-csv"></i></a>
 
@@ -48,7 +48,7 @@
                         <div class="input-group">
                                 <div class="form-group">
                                     <strong> From:</strong>
-                                    <input type="text" class="datetime" id="min" name="min" >
+                                    <input type="text" readonly id="min" name="min" >
                                 </div>
                                 <div class="form-group">
                                     <strong> To:</strong>

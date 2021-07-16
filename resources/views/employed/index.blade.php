@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-group">
                                     <strong> To:</strong>
-                                    <input type="text" readonly id="max" name="max" placeholder="To">
+                                    <input type="text" readonly id="max" name="max">
                                 </div>
                                 
                             </div> 

@@ -145,32 +145,7 @@ class EmployedController extends Controller
             ->with('success', 'Employed deleted successfully');
     }
 
-    public function import()
-    {
-        return view('employed.import');
-    }
-
-    public function fileImport(Request $request) 
-    {
-        $campos=[
-            'file'=>'required|mimes:csv,xlsx'
-        ];
-        
-        $this->validate($request, $campos);
-
-        $file = $request->file('file')->store('temp');
-        $imports= new EmployedsImport();
-
-        $imports->import($file);
-        if ($imports->failures()->isNotEmpty()) {
-            return back()->withFailures($imports->failures());
-        }
-     
-        return redirect()->route('employeds.index')
-        ->with('success', 'Employeds created successfully.');
     
-    }
-
     public function downloadPdf()
     {
         $employeds = Employed::all();

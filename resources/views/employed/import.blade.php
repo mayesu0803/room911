@@ -13,6 +13,13 @@
                             <a class="btn" href="{{ route('employeds.index') }}"> <i class="fas fa-2x fa-home"></i></a>
                         </div>
             </div>
+            @if (isset($errors) && $errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}
+                            @endforeach
+                        </div>
+                    @endif
             
             @if (session()->has('failures'))
 
@@ -43,19 +50,7 @@
                         </table>
 
                     @endif
-            @if($errors->first('file'))
-
-            <div class="alert alert-danger" role="alert" >
-                <ul>
-                    <li>{{$errors->first('file')}}</li>
-                   
-                </ul>
-
-                
-            </div>
-            @endif
-            @includeif('partials.errors')
-            
+                       
             <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <div class="card-body" >

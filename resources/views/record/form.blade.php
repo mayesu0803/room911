@@ -11,5 +11,6 @@
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-danger" href="{{'/employeds'}}">Cancel</a>
     </div>
 </div>

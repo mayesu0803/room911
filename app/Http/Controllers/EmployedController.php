@@ -6,8 +6,6 @@ use App\Models\Employed;
 use App\Models\Record;
 use Illuminate\Http\Request;
 use App\Models\Department;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\EmployedsImport;
 use Maatwebsite\Excel\Validators\ValidationException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +25,6 @@ class EmployedController extends Controller
      */
     public function index()
     {
-
         $employeds = DB::select('call all_employees()');
         return view('employed.index', compact('employeds'));
     }
@@ -144,7 +141,6 @@ class EmployedController extends Controller
         return redirect()->route('employeds.index')
             ->with('success', 'Employed deleted successfully');
     }
-
     
     public function downloadPdf()
     {

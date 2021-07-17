@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employed;
-use App\Models\Record;
 use Illuminate\Http\Request;
-use App\Models\Department;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\EmployedsImport;
 use Maatwebsite\Excel\Validators\ValidationException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use PDF;
 use DataTables;
 
 /**
@@ -52,7 +49,7 @@ class EmployeesImportController extends Controller
         }
      
         return redirect()->route('employeds.index')
-        ->with('success', 'Employeds created successfully.');
+        ->with('success', 'Employees created successfully.');
     
     }
 }

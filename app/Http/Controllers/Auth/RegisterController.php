@@ -79,7 +79,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         $users = User::count();
         if($users){
             
@@ -89,6 +88,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
+            return $user;
 
         }else{
             return User::create([

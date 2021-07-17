@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployedController;
 use App\Http\Controllers\EmployeesImportController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,23 @@ use App\Http\Controllers\Auth\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+$users = User::count();
+    if($users){
+    	Route::get('/', function () {
+    		return view('auth.login');
+    	});
+    	Route::group(['middleware'=>'auth'], function(){
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+		  Route::get('/', [App\Http\Controllers\EmployedController::class, 'index'])->name('employeds');
+		});
+    }else{
+    	Route::get('/', function () {
+		      return view('auth.register');
+          });
+    }
 
 Auth::routes();
+Auth::routes(['reset'=>false]);
 Route::resource('employeds', App\Http\Controllers\EmployedController::class)->middleware('auth');
 Route::resource('departments', App\Http\Controllers\DepartmentController::class)->middleware('auth');
 Route::resource('records', App\Http\Controllers\RecordController::class)->middleware('auth');
@@ -33,8 +45,4 @@ Route::post('file-import', [EmployeesImportController::class, 'fileImport'])->na
 Route::get('export-pdf', [EmployedController::class, 'downloadPdf'])->name('export-pdf');
 Route::get('export-pdf/{id}', [EmployedController::class, 'downloadPdfRecords'])->name('export-pdf-records');
 
-Route::group(['middleware'=>'auth'], function(){
 
-	Route::get('/', [App\Http\Controllers\EmployedController::class, 'index'])->name('employeds');
-
-});

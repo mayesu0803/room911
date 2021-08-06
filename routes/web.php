@@ -17,20 +17,16 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
-$users = User::count();
-    if($users){
+
     	Route::get('/', function () {
     		return view('auth.login');
     	});
     	Route::group(['middleware'=>'auth'], function(){
 
 		  Route::get('/', [App\Http\Controllers\EmployedController::class, 'index'])->name('employeds');
+	
 		});
-    }else{
-    	Route::get('/', function () {
-		      return view('auth.register');
-          });
-    }
+   
 
 Auth::routes();
 Auth::routes(['reset'=>false]);
